@@ -11447,7 +11447,6 @@ function CardCVCInput(props) {
 //#region src/components/CardNumberSegmentsInput.tsx
 function CardNumberSegmentsInput(props) {
 	const [segments, setSegments] = (0, import_react.useState)(props.value);
-	const [inputError, setInputError] = (0, import_react.useState)(null);
 	(0, import_react.useEffect)(() => {
 		props.onChange(segments);
 	}, [segments]);
@@ -11460,39 +11459,35 @@ function CardNumberSegmentsInput(props) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
 		direction: "column",
 		gap: 10,
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "카드 번호" }),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
-				gap: 10,
-				children: segments.map((el, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ValidationInput, {
-					"data-index": index,
-					type: "text",
-					inputMode: "numeric",
-					placeholder: "1234",
-					value: el,
-					onChange: handleChange,
-					onChangeError: (error) => setInputError(error),
-					validations: [
-						{
-							type: "limit",
-							validator: validateNumberString,
-							message: "숫자만 입력 가능합니다."
-						},
-						{
-							type: "limit",
-							validator: (input) => validateStringMaxLength(input, 4),
-							message: "4자리까지만 입력 가능합니다."
-						},
-						{
-							type: "check",
-							validator: (input) => validateStringLength(input, 4),
-							message: "4자리를 입력해주세요."
-						}
-					]
-				}, index))
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(InputErrorMessage, { children: inputError?.message })
-		]
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "카드 번호" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
+			gap: 10,
+			children: segments.map((el, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ValidationInput, {
+				"data-index": index,
+				type: "text",
+				inputMode: "numeric",
+				placeholder: "1234",
+				value: el,
+				onChange: handleChange,
+				isShowError: true,
+				validations: [
+					{
+						type: "limit",
+						validator: validateNumberString,
+						message: "숫자만 입력 가능합니다."
+					},
+					{
+						type: "limit",
+						validator: (input) => validateStringMaxLength(input, 4),
+						message: "4자리까지만 입력 가능합니다."
+					},
+					{
+						type: "check",
+						validator: (input) => validateStringLength(input, 4),
+						message: "4자리를 입력해주세요."
+					}
+				]
+			}, index))
+		})]
 	});
 }
 //#endregion
@@ -11500,7 +11495,6 @@ function CardNumberSegmentsInput(props) {
 function CardExpiryDateInput(props) {
 	const [expiryMonth, setExpiryMonth] = (0, import_react.useState)(props.value.expiryMonth);
 	const [expiryYear, setExpiryYear] = (0, import_react.useState)(props.value.expiryYear);
-	const [inputError, setInputError] = (0, import_react.useState)(null);
 	(0, import_react.useEffect)(() => {
 		props.onChange([expiryMonth, expiryYear]);
 	}, [expiryMonth, expiryYear]);
@@ -11513,73 +11507,70 @@ function CardExpiryDateInput(props) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
 		direction: "column",
 		gap: 10,
-		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "유효기간" }),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-				gap: 10,
-				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ValidationInput, {
-					type: "text",
-					inputMode: "numeric",
-					autoComplete: "cc-exp-month",
-					placeholder: "MM",
-					value: expiryMonth,
-					onChange: handleChangeMonth,
-					onChangeError: (error) => setInputError(error),
-					validations: [
-						{
-							type: "limit",
-							validator: validateNumberString,
-							message: "숫자만 입력 가능합니다."
-						},
-						{
-							type: "limit",
-							validator: (input) => validateStringMaxLength(input, 2),
-							message: "2자리까지 입력 가능합니다."
-						},
-						{
-							type: "check",
-							validator: (input) => validateStringLength(input, 2),
-							message: "2자리를 입력해주세요."
-						},
-						{
-							type: "check",
-							validator: validateMonth,
-							message: "유효한 월을 입력해주세요. (01 ~ 12)"
-						}
-					]
-				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ValidationInput, {
-					type: "text",
-					inputMode: "numeric",
-					autoComplete: "cc-exp-year",
-					placeholder: "YY",
-					value: expiryYear,
-					onChange: handleChangeYear,
-					validations: [
-						{
-							type: "limit",
-							validator: validateNumberString,
-							message: "숫자만 입력 가능합니다."
-						},
-						{
-							type: "limit",
-							validator: (input) => validateStringMaxLength(input, 2),
-							message: "2자리까지 입력 가능합니다."
-						},
-						{
-							type: "check",
-							validator: (input) => validateStringLength(input, 2),
-							message: "2자리를 입력해주세요."
-						},
-						{
-							type: "check",
-							validator: validateYear,
-							message: "유효한 년도을 입력해주세요. (00 ~ 99)"
-						}
-					]
-				})]
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(InputErrorMessage, { children: inputError?.message })
-		]
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "유효기간" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+			gap: 10,
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(ValidationInput, {
+				type: "text",
+				inputMode: "numeric",
+				autoComplete: "cc-exp-month",
+				placeholder: "MM",
+				value: expiryMonth,
+				onChange: handleChangeMonth,
+				isShowError: true,
+				validations: [
+					{
+						type: "limit",
+						validator: validateNumberString,
+						message: "숫자만 입력 가능합니다."
+					},
+					{
+						type: "limit",
+						validator: (input) => validateStringMaxLength(input, 2),
+						message: "2자리까지 입력 가능합니다."
+					},
+					{
+						type: "check",
+						validator: (input) => validateStringLength(input, 2),
+						message: "2자리를 입력해주세요."
+					},
+					{
+						type: "check",
+						validator: validateMonth,
+						message: "유효한 월을 입력해주세요. (01 ~ 12)"
+					}
+				]
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ValidationInput, {
+				type: "text",
+				inputMode: "numeric",
+				autoComplete: "cc-exp-year",
+				placeholder: "YY",
+				value: expiryYear,
+				onChange: handleChangeYear,
+				isShowError: true,
+				validations: [
+					{
+						type: "limit",
+						validator: validateNumberString,
+						message: "숫자만 입력 가능합니다."
+					},
+					{
+						type: "limit",
+						validator: (input) => validateStringMaxLength(input, 2),
+						message: "2자리까지 입력 가능합니다."
+					},
+					{
+						type: "check",
+						validator: (input) => validateStringLength(input, 2),
+						message: "2자리를 입력해주세요."
+					},
+					{
+						type: "check",
+						validator: validateYear,
+						message: "유효한 년도을 입력해주세요. (00 ~ 99)"
+					}
+				]
+			})]
+		})]
 	});
 }
 //#endregion
