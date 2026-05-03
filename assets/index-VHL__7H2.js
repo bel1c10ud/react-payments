@@ -11408,11 +11408,19 @@ var Label = styled.label`
 //#endregion
 //#region src/components/CardCVCInput.tsx
 function CardCVCInput(props) {
+	const [cvc, setCvc] = (0, import_react.useState)(props.value);
+	(0, import_react.useEffect)(() => {
+		props.onChange(cvc);
+	}, [cvc]);
+	const handleChange = (event) => {
+		setCvc(event.target.value);
+	};
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
 		direction: "column",
 		gap: 10,
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Label, { children: "CVC" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ValidationInput, {
-			...props,
+			value: cvc,
+			onChange: handleChange,
 			type: "text",
 			inputMode: "numeric",
 			autoComplete: "cc-exp-csc",
@@ -11625,9 +11633,9 @@ function CardForm(props) {
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardCVCInput, {
 				value: props.formState.cvc,
-				onChange: (e) => props.setFormState({
+				onChange: (value) => props.setFormState({
 					...props.formState,
-					cvc: e.target.value
+					cvc: value
 				})
 			})
 		]
@@ -11638,7 +11646,7 @@ function CardForm(props) {
 function useCardBrand(CardNumberSegments) {
 	return (0, import_react.useMemo)(() => {
 		if (CardNumberSegments[0].startsWith("4")) return "VISA";
-		if (/^(51)|(52)|(53)|(54)|(55)/g.test(CardNumberSegments[0])) return "MasterCard";
+		if (/^(51|52|53|54|55)/g.test(CardNumberSegments[0])) return "MasterCard";
 		return null;
 	}, [CardNumberSegments]);
 }
