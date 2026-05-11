@@ -13410,19 +13410,72 @@ function CardPreview(props) {
 	});
 }
 //#endregion
+//#region src/hooks/useSelectionRestore.ts
+function getSelectionRange(target) {
+	return {
+		start: target.selectionStart ?? target.value.length,
+		end: target.selectionEnd ?? target.value.length
+	};
+}
+function useSelectionRestore(ref) {
+	const selectionRef = (0, import_react.useRef)(null);
+	(0, import_react.useLayoutEffect)(() => {
+		if (selectionRef.current === null) return;
+		const { start, end } = selectionRef.current;
+		selectionRef.current = null;
+		if (ref.current instanceof HTMLInputElement) ref.current.setSelectionRange(start, end);
+	});
+	return (0, import_react.useCallback)((target) => {
+		selectionRef.current = getSelectionRange(target);
+	}, []);
+}
+function useIndexedSelectionRestore(refs) {
+	const selectionRef = (0, import_react.useRef)(null);
+	(0, import_react.useLayoutEffect)(() => {
+		if (selectionRef.current === null) return;
+		const { index, start, end } = selectionRef.current;
+		selectionRef.current = null;
+		refs[index]?.current?.setSelectionRange(start, end);
+	});
+	return (0, import_react.useCallback)((index, target) => {
+		selectionRef.current = {
+			index,
+			...getSelectionRange(target)
+		};
+	}, []);
+}
+//#endregion
 //#region src/hooks/useArrayInput.ts
+function findFailedValidation$1(validations, value, type) {
+	return validations.find((validation) => validation.type === type && !validation.validator(value));
+}
+function findChangeBlockingValidation$1(validations, nextValue, previousValue) {
+	return validations.find((validation) => nextValue.length && !previousValue?.startsWith(nextValue) && validation.type === "onChange" && !validation.validator(nextValue));
+}
+function getError$1(value, validations, storedError) {
+	if (!value) return storedError;
+	return findFailedValidation$1(validations, value, "onChange")?.message ?? storedError;
+}
+function isValidValue$1(value, validations) {
+	return !!value && validations.every((rule) => rule.validator(value));
+}
+function replaceAt(values, index, value) {
+	const newArray = [...values];
+	newArray.splice(index, 1, value);
+	return newArray;
+}
+function resizeErrors(errors, length) {
+	return Array.from({ length }, (_, index) => errors[index] ?? null);
+}
 function useArrayInput(initialValue, options) {
 	const [values, setValues] = (0, import_react.useState)(initialValue);
 	const [storedErrors, setStoredErrors] = (0, import_react.useState)(() => initialValue.map(() => null));
 	const [refs] = (0, import_react.useState)(() => initialValue.map(() => (0, import_react.createRef)()));
+	const saveSelection = useIndexedSelectionRestore(refs);
 	const currentValidations = (0, import_react.useMemo)(() => options?.validation?.(values) ?? [], [options, values]);
 	const errors = (0, import_react.useMemo)(() => {
 		return values.map((value, index) => {
-			if (value) {
-				const failed = (currentValidations[index] ?? []).find((rule) => rule.type === "onChange" && !rule.validator(value));
-				if (failed) return failed.message;
-			}
-			return storedErrors[index];
+			return getError$1(value, currentValidations[index] ?? [], storedErrors[index]);
 		});
 	}, [
 		currentValidations,
@@ -13435,92 +13488,122 @@ function useArrayInput(initialValue, options) {
 		error: (0, import_react.useMemo)(() => {
 			return errors.find((err) => err);
 		}, [errors]),
-		isValid: (0, import_react.useMemo)(() => values.every((value, index) => !!value && (currentValidations[index] ?? []).every((rule) => rule.validator(value ?? ""))), [currentValidations, values]),
+		isValid: (0, import_react.useMemo)(() => values.every((value, index) => isValidValue$1(value, currentValidations[index] ?? [])), [currentValidations, values]),
 		refs,
 		register: (0, import_react.useCallback)(({ index }) => {
 			return {
 				ref: refs[index],
 				onChange: (e) => {
-					const failedValidation = (currentValidations[index] ?? []).find((validation) => e.target.value.length && !values[index]?.startsWith(e.target.value) && validation.type === "onChange" && !validation.validator(e.target.value));
+					const fieldValidations = currentValidations[index] ?? [];
+					const failedValidation = findChangeBlockingValidation$1(fieldValidations, e.target.value, values[index]);
 					if (failedValidation) {
 						setStoredErrors((prev) => {
-							const newArray = [...prev];
-							newArray.splice(index, 1, failedValidation.message);
-							return newArray;
+							return replaceAt(prev, index, failedValidation.message);
 						});
 						return;
 					}
+					const resolver = options?.resolver;
+					if (resolver) {
+						const resolvedValues = resolver(values.map((v, i) => i === index ? e.target.value : v));
+						setValues(resolvedValues);
+						setStoredErrors((prev) => resizeErrors(prev, resolvedValues.length));
+						if (fieldValidations.every((v) => v.validator(e.target.value))) {
+							const nextRef = refs[index + 1];
+							if (nextRef) {
+								nextRef.current?.focus();
+								return;
+							}
+						}
+						saveSelection(index, e.target);
+						return;
+					}
 					setValues((prev) => {
-						const newArray = [...prev];
-						newArray.splice(index, 1, e.target.value);
-						return newArray;
+						return replaceAt(prev, index, e.target.value);
 					});
 					setStoredErrors((prev) => {
-						const newArray = [...prev];
-						newArray.splice(index, 1, null);
-						return newArray;
+						return replaceAt(prev, index, null);
 					});
-					if (currentValidations[index]?.every((validation) => validation.validator(e.target.value))) {
+					if (fieldValidations.every((validation) => validation.validator(e.target.value))) {
 						const nextRef = refs[index + 1];
 						if (nextRef) nextRef.current?.focus();
 					}
 				},
 				onBlur: (e) => {
-					const failedValidation = (currentValidations[index] ?? []).find((validation) => validation.type === "onBlur" && !validation.validator(e.target.value));
+					const failedValidation = findFailedValidation$1(currentValidations[index] ?? [], e.target.value, "onBlur");
 					setStoredErrors((prev) => {
-						const newArray = [...prev];
-						newArray.splice(index, 1, failedValidation ? failedValidation.message : null);
-						return newArray;
+						return replaceAt(prev, index, failedValidation ? failedValidation.message : null);
 					});
 				}
 			};
 		}, [
 			currentValidations,
 			refs,
-			values
+			values,
+			options?.resolver,
+			saveSelection
 		])
 	};
 }
 //#endregion
 //#region src/hooks/useInput.ts
+function findFailedValidation(validations, value, type) {
+	return validations.find((validation) => validation.type === type && !validation.validator(value));
+}
+function findChangeBlockingValidation(validations, nextValue, previousValue) {
+	return validations.find((validation) => nextValue.length && !previousValue?.startsWith(nextValue) && validation.type === "onChange" && !validation.validator(nextValue));
+}
+function getError(value, validations, storedError) {
+	if (!value) return storedError;
+	return findFailedValidation(validations, value, "onChange")?.message ?? storedError;
+}
+function isValidValue(value, validations) {
+	return !!value && validations.every((rule) => rule.validator(value));
+}
 function useInput(initialValue, options) {
 	const [value, setValue] = (0, import_react.useState)(initialValue);
 	const [storedError, setStoredError] = (0, import_react.useState)(null);
 	const ref = (0, import_react.useRef)(null);
+	const saveSelection = useSelectionRestore(ref);
 	const currentValidations = (0, import_react.useMemo)(() => options?.validation?.(value) ?? [], [options, value]);
 	return {
 		value,
-		error: (0, import_react.useMemo)(() => {
-			if (value) {
-				const failed = currentValidations.find((rule) => rule.type === "onChange" && !rule.validator(value));
-				if (failed) return failed.message;
-			}
-			return storedError;
-		}, [
+		error: (0, import_react.useMemo)(() => getError(value, currentValidations, storedError), [
 			currentValidations,
 			value,
 			storedError
 		]),
-		isValid: !!value && currentValidations.every((rule) => rule.validator(value)),
+		isValid: isValidValue(value, currentValidations),
 		ref,
 		register: (0, import_react.useCallback)(() => {
 			return {
 				ref,
 				onChange: (e) => {
-					const failedValidation = currentValidations.find((validation) => e.target.value.length && !value?.startsWith(e.target.value) && validation.type === "onChange" && !validation.validator(e.target.value));
+					const failedValidation = findChangeBlockingValidation(currentValidations, e.target.value, value);
 					if (failedValidation) {
 						setStoredError(failedValidation.message);
+						return;
+					}
+					const resolver = options?.resolver;
+					if (resolver) {
+						setValue(resolver(e.target.value));
+						setStoredError(null);
+						if (e.target instanceof HTMLInputElement) saveSelection(e.target);
 						return;
 					}
 					setValue(e.target.value);
 					setStoredError(null);
 				},
 				onBlur: (e) => {
-					const failedValidation = currentValidations.find((validation) => validation.type === "onBlur" && !validation.validator(e.target.value));
+					const failedValidation = findFailedValidation(currentValidations, e.target.value, "onBlur");
 					setStoredError(failedValidation ? failedValidation.message : null);
 				}
 			};
-		}, [currentValidations, value])
+		}, [
+			currentValidations,
+			value,
+			options?.resolver,
+			saveSelection
+		])
 	};
 }
 //#endregion
@@ -13541,12 +13624,12 @@ function useCardForm() {
 		""
 	], { validation: (cardNumberSegments) => {
 		const cardNetwork = getCardNetwork(cardNumberSegments);
-		const lastSegmentsLength = cardNetwork ? CARD_NETWORK[cardNetwork]["cardNumberLength"] % 4 : 4;
+		const cardNumberLength = cardNetwork ? CARD_NETWORK[cardNetwork].cardNumberLength : 16;
 		return [
 			[...createDigitFieldValidations(4)],
 			[...createDigitFieldValidations(4)],
 			[...createDigitFieldValidations(4)],
-			[...createDigitFieldValidations(lastSegmentsLength)]
+			[...createDigitFieldValidations(cardNumberLength - 12)]
 		];
 	} });
 	const cardIssuerField = useInput(null, { validation: () => {
