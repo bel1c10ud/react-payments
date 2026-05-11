@@ -1,4 +1,4 @@
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+@import 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css';
 /* 1. Use a more-intuitive box-sizing model */*,
 *::before,
 *::after {
@@ -69,11 +69,20 @@ h6 {
 body {
   width: 100%;
 }:root {
-  --color-card-background: #333333;
-  --color-card-chip: #ddcd78;
   --color-black: #000000;
   --color-white: #ffffff;
   --color-description: #8b95a1;
   --color-border: #acacac;
   --color-error: #ff3d3d;
+
+  --color-card-chip: #ddcd78;
+  --color-card-background: #333333;
+  --color-card-bc: #f04651;
+  --color-card-shinhan: #0046ff;
+  --color-card-kakao: #ffe600;
+  --color-card-hyundai: #000000;
+  --color-card-woori: #007bc8;
+  --color-card-lotte: #ed1c24;
+  --color-card-hana: #009490;
+  --color-card-kookmin: #6a6056;
 }
