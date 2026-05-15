@@ -14132,16 +14132,15 @@ var SelectBase = styled.select`
   &:open::picker(select) {
     display: flex;
     flex-direction: column;
-    gap: 10px;
     border-color: var(--color-border);
     margin: 5px 0;
-    padding: 4px 8px;
+    padding: 0;
     border-radius: 3px;
   }
 
   & option {
     gap: 0;
-    padding: 0;
+    padding: 8px;
     font-size: 14px;
   }
 
