@@ -11871,7 +11871,7 @@ function _extends() {
 }
 //#endregion
 //#region node_modules/@emotion/sheet/dist/emotion-sheet.esm.js
-var isDevelopment$2 = false;
+var isDevelopment$3 = false;
 function sheetForTag(tag) {
 	if (tag.sheet) return tag.sheet;
 	/* istanbul ignore next */
@@ -11897,7 +11897,7 @@ var StyleSheet = /* @__PURE__ */ function() {
 			_this.container.insertBefore(tag, before);
 			_this.tags.push(tag);
 		};
-		this.isSpeedy = options.speedy === void 0 ? !isDevelopment$2 : options.speedy;
+		this.isSpeedy = options.speedy === void 0 ? !isDevelopment$3 : options.speedy;
 		this.tags = [];
 		this.ctr = 0;
 		this.nonce = options.nonce;
@@ -12683,6 +12683,187 @@ var createCache = function createCache(options) {
 	return cache;
 };
 //#endregion
+//#region node_modules/hoist-non-react-statics/node_modules/react-is/cjs/react-is.production.min.js
+/** @license React v16.13.1
+* react-is.production.min.js
+*
+* Copyright (c) Facebook, Inc. and its affiliates.
+*
+* This source code is licensed under the MIT license found in the
+* LICENSE file in the root directory of this source tree.
+*/
+var require_react_is_production_min = /* @__PURE__ */ __commonJSMin(((exports) => {
+	var b = "function" === typeof Symbol && Symbol.for, c = b ? Symbol.for("react.element") : 60103, d = b ? Symbol.for("react.portal") : 60106, e = b ? Symbol.for("react.fragment") : 60107, f = b ? Symbol.for("react.strict_mode") : 60108, g = b ? Symbol.for("react.profiler") : 60114, h = b ? Symbol.for("react.provider") : 60109, k = b ? Symbol.for("react.context") : 60110, l = b ? Symbol.for("react.async_mode") : 60111, m = b ? Symbol.for("react.concurrent_mode") : 60111, n = b ? Symbol.for("react.forward_ref") : 60112, p = b ? Symbol.for("react.suspense") : 60113, q = b ? Symbol.for("react.suspense_list") : 60120, r = b ? Symbol.for("react.memo") : 60115, t = b ? Symbol.for("react.lazy") : 60116, v = b ? Symbol.for("react.block") : 60121, w = b ? Symbol.for("react.fundamental") : 60117, x = b ? Symbol.for("react.responder") : 60118, y = b ? Symbol.for("react.scope") : 60119;
+	function z(a) {
+		if ("object" === typeof a && null !== a) {
+			var u = a.$$typeof;
+			switch (u) {
+				case c: switch (a = a.type, a) {
+					case l:
+					case m:
+					case e:
+					case g:
+					case f:
+					case p: return a;
+					default: switch (a = a && a.$$typeof, a) {
+						case k:
+						case n:
+						case t:
+						case r:
+						case h: return a;
+						default: return u;
+					}
+				}
+				case d: return u;
+			}
+		}
+	}
+	function A(a) {
+		return z(a) === m;
+	}
+	exports.AsyncMode = l;
+	exports.ConcurrentMode = m;
+	exports.ContextConsumer = k;
+	exports.ContextProvider = h;
+	exports.Element = c;
+	exports.ForwardRef = n;
+	exports.Fragment = e;
+	exports.Lazy = t;
+	exports.Memo = r;
+	exports.Portal = d;
+	exports.Profiler = g;
+	exports.StrictMode = f;
+	exports.Suspense = p;
+	exports.isAsyncMode = function(a) {
+		return A(a) || z(a) === l;
+	};
+	exports.isConcurrentMode = A;
+	exports.isContextConsumer = function(a) {
+		return z(a) === k;
+	};
+	exports.isContextProvider = function(a) {
+		return z(a) === h;
+	};
+	exports.isElement = function(a) {
+		return "object" === typeof a && null !== a && a.$$typeof === c;
+	};
+	exports.isForwardRef = function(a) {
+		return z(a) === n;
+	};
+	exports.isFragment = function(a) {
+		return z(a) === e;
+	};
+	exports.isLazy = function(a) {
+		return z(a) === t;
+	};
+	exports.isMemo = function(a) {
+		return z(a) === r;
+	};
+	exports.isPortal = function(a) {
+		return z(a) === d;
+	};
+	exports.isProfiler = function(a) {
+		return z(a) === g;
+	};
+	exports.isStrictMode = function(a) {
+		return z(a) === f;
+	};
+	exports.isSuspense = function(a) {
+		return z(a) === p;
+	};
+	exports.isValidElementType = function(a) {
+		return "string" === typeof a || "function" === typeof a || a === e || a === m || a === g || a === f || a === p || a === q || "object" === typeof a && null !== a && (a.$$typeof === t || a.$$typeof === r || a.$$typeof === h || a.$$typeof === k || a.$$typeof === n || a.$$typeof === w || a.$$typeof === x || a.$$typeof === y || a.$$typeof === v);
+	};
+	exports.typeOf = z;
+}));
+//#endregion
+//#region node_modules/hoist-non-react-statics/node_modules/react-is/index.js
+var require_react_is = /* @__PURE__ */ __commonJSMin(((exports, module) => {
+	module.exports = require_react_is_production_min();
+}));
+//#endregion
+//#region node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
+var require_hoist_non_react_statics_cjs = /* @__PURE__ */ __commonJSMin(((exports, module) => {
+	var reactIs = require_react_is();
+	/**
+	* Copyright 2015, Yahoo! Inc.
+	* Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+	*/
+	var REACT_STATICS = {
+		childContextTypes: true,
+		contextType: true,
+		contextTypes: true,
+		defaultProps: true,
+		displayName: true,
+		getDefaultProps: true,
+		getDerivedStateFromError: true,
+		getDerivedStateFromProps: true,
+		mixins: true,
+		propTypes: true,
+		type: true
+	};
+	var KNOWN_STATICS = {
+		name: true,
+		length: true,
+		prototype: true,
+		caller: true,
+		callee: true,
+		arguments: true,
+		arity: true
+	};
+	var FORWARD_REF_STATICS = {
+		"$$typeof": true,
+		render: true,
+		defaultProps: true,
+		displayName: true,
+		propTypes: true
+	};
+	var MEMO_STATICS = {
+		"$$typeof": true,
+		compare: true,
+		defaultProps: true,
+		displayName: true,
+		propTypes: true,
+		type: true
+	};
+	var TYPE_STATICS = {};
+	TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+	TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
+	function getStatics(component) {
+		if (reactIs.isMemo(component)) return MEMO_STATICS;
+		return TYPE_STATICS[component["$$typeof"]] || REACT_STATICS;
+	}
+	var defineProperty = Object.defineProperty;
+	var getOwnPropertyNames = Object.getOwnPropertyNames;
+	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+	var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+	var getPrototypeOf = Object.getPrototypeOf;
+	var objectPrototype = Object.prototype;
+	function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+		if (typeof sourceComponent !== "string") {
+			if (objectPrototype) {
+				var inheritedComponent = getPrototypeOf(sourceComponent);
+				if (inheritedComponent && inheritedComponent !== objectPrototype) hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+			}
+			var keys = getOwnPropertyNames(sourceComponent);
+			if (getOwnPropertySymbols) keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+			var targetStatics = getStatics(targetComponent);
+			var sourceStatics = getStatics(sourceComponent);
+			for (var i = 0; i < keys.length; ++i) {
+				var key = keys[i];
+				if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
+					var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+					try {
+						defineProperty(targetComponent, key, descriptor);
+					} catch (e) {}
+				}
+			}
+		}
+		return targetComponent;
+	}
+	module.exports = hoistNonReactStatics;
+}));
+//#endregion
 //#region node_modules/@emotion/utils/dist/emotion-utils.browser.esm.js
 var isBrowser = true;
 function getRegisteredStyles(registered, registeredStyles, classNames) {
@@ -12783,7 +12964,7 @@ var unitlessKeys = {
 };
 //#endregion
 //#region node_modules/@emotion/serialize/dist/emotion-serialize.esm.js
-var isDevelopment$1 = false;
+var isDevelopment$2 = false;
 var hyphenateRegex = /[A-Z]|^ms/g;
 var animationRegex = /_EMO_([^_]+?)_([^]*?)_EMO_/g;
 var isCustomProperty = function isCustomProperty(property) {
@@ -12865,7 +13046,7 @@ function createStringFromObject(mergedProps, registered, obj) {
 			if (registered != null && registered[asString] !== void 0) string += key + "{" + registered[asString] + "}";
 			else if (isProcessableValue(asString)) string += processStyleName(key) + ":" + processStyleValue(key, asString) + ";";
 		} else {
-			if (key === "NO_COMPONENT_SELECTOR" && isDevelopment$1) throw new Error(noComponentSelectorMessage);
+			if (key === "NO_COMPONENT_SELECTOR" && isDevelopment$2) throw new Error(noComponentSelectorMessage);
 			if (Array.isArray(value) && typeof value[0] === "string" && (registered == null || registered[value[0]] === void 0)) {
 				for (var _i = 0; _i < value.length; _i++) if (isProcessableValue(value[_i])) string += processStyleName(key) + ":" + processStyleValue(key, value[_i]) + ";";
 			} else {
@@ -12916,8 +13097,6 @@ var syncFallback = function syncFallback(create) {
 var useInsertionEffect = import_react.useInsertionEffect ? import_react.useInsertionEffect : false;
 var useInsertionEffectAlwaysWithSyncFallback = useInsertionEffect || syncFallback;
 useInsertionEffect || import_react.useLayoutEffect;
-//#endregion
-//#region node_modules/@emotion/react/dist/emotion-element-f0de968e.browser.esm.js
 var EmotionCacheContext = /* @__PURE__ */ import_react.createContext(typeof HTMLElement !== "undefined" ? /* @__PURE__ */ createCache({ key: "css" }) : null);
 EmotionCacheContext.Provider;
 var withEmotionCache = function withEmotionCache(func) {
@@ -12926,7 +13105,61 @@ var withEmotionCache = function withEmotionCache(func) {
 	});
 };
 var ThemeContext = /* @__PURE__ */ import_react.createContext({});
-({}).hasOwnProperty;
+var hasOwn = {}.hasOwnProperty;
+var typePropName = "__EMOTION_TYPE_PLEASE_DO_NOT_USE__";
+var createEmotionProps = function createEmotionProps(type, props) {
+	var newProps = {};
+	for (var _key in props) if (hasOwn.call(props, _key)) newProps[_key] = props[_key];
+	newProps[typePropName] = type;
+	return newProps;
+};
+var Insertion$1 = function Insertion(_ref) {
+	var cache = _ref.cache, serialized = _ref.serialized, isStringTag = _ref.isStringTag;
+	registerStyles(cache, serialized, isStringTag);
+	useInsertionEffectAlwaysWithSyncFallback(function() {
+		return insertStyles(cache, serialized, isStringTag);
+	});
+	return null;
+};
+var Emotion$1 = /* @__PURE__ */ withEmotionCache(function(props, cache, ref) {
+	var cssProp = props.css;
+	if (typeof cssProp === "string" && cache.registered[cssProp] !== void 0) cssProp = cache.registered[cssProp];
+	var WrappedComponent = props[typePropName];
+	var registeredStyles = [cssProp];
+	var className = "";
+	if (typeof props.className === "string") className = getRegisteredStyles(cache.registered, registeredStyles, props.className);
+	else if (props.className != null) className = props.className + " ";
+	var serialized = serializeStyles(registeredStyles, void 0, import_react.useContext(ThemeContext));
+	className += cache.key + "-" + serialized.name;
+	var newProps = {};
+	for (var _key2 in props) if (hasOwn.call(props, _key2) && _key2 !== "css" && _key2 !== typePropName && true) newProps[_key2] = props[_key2];
+	newProps.className = className;
+	if (ref) newProps.ref = ref;
+	return /* @__PURE__ */ import_react.createElement(import_react.Fragment, null, /* @__PURE__ */ import_react.createElement(Insertion$1, {
+		cache,
+		serialized,
+		isStringTag: typeof WrappedComponent === "string"
+	}), /* @__PURE__ */ import_react.createElement(WrappedComponent, newProps));
+});
+require_hoist_non_react_statics_cjs();
+var jsx = function jsx(type, props) {
+	var args = arguments;
+	if (props == null || !hasOwn.call(props, "css")) return import_react.createElement.apply(void 0, args);
+	var argsLength = args.length;
+	var createElementArgArray = new Array(argsLength);
+	createElementArgArray[0] = Emotion$1;
+	createElementArgArray[1] = createEmotionProps(type, props);
+	for (var i = 2; i < argsLength; i++) createElementArgArray[i] = args[i];
+	return import_react.createElement.apply(null, createElementArgArray);
+};
+(function(_jsx) {
+	var JSX;
+	(function(_JSX) {})(JSX || (JSX = _jsx.JSX || (_jsx.JSX = {})));
+})(jsx || (jsx = {}));
+function css() {
+	for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) args[_key] = arguments[_key];
+	return serializeStyles(args);
+}
 //#endregion
 //#region node_modules/@emotion/is-prop-valid/dist/emotion-is-prop-valid.esm.js
 var reactPropsRegex = /^((children|dangerouslySetInnerHTML|key|ref|autoFocus|defaultValue|defaultChecked|innerHTML|suppressContentEditableWarning|suppressHydrationWarning|valueLink|abbr|accept|acceptCharset|accessKey|action|allow|allowUserMedia|allowPaymentRequest|allowFullScreen|allowTransparency|alt|async|autoComplete|autoPlay|capture|cellPadding|cellSpacing|challenge|charSet|checked|cite|classID|className|cols|colSpan|content|contentEditable|contextMenu|controls|controlsList|coords|crossOrigin|data|dateTime|decoding|default|defer|dir|disabled|disablePictureInPicture|disableRemotePlayback|download|draggable|encType|enterKeyHint|fetchpriority|fetchPriority|form|formAction|formEncType|formMethod|formNoValidate|formTarget|frameBorder|headers|height|hidden|high|href|hrefLang|htmlFor|httpEquiv|id|inputMode|integrity|is|keyParams|keyType|kind|label|lang|list|loading|loop|low|marginHeight|marginWidth|max|maxLength|media|mediaGroup|method|min|minLength|multiple|muted|name|nonce|noValidate|open|optimum|pattern|placeholder|playsInline|popover|popoverTarget|popoverTargetAction|poster|preload|profile|radioGroup|readOnly|referrerPolicy|rel|required|reversed|role|rows|rowSpan|sandbox|scope|scoped|scrolling|seamless|selected|shape|size|sizes|slot|span|spellCheck|src|srcDoc|srcLang|srcSet|start|step|style|summary|tabIndex|target|title|translate|type|useMap|value|width|wmode|wrap|about|datatype|inlist|prefix|property|resource|typeof|vocab|autoCapitalize|autoCorrect|autoSave|color|incremental|fallback|inert|itemProp|itemScope|itemType|itemID|itemRef|on|option|results|security|unselectable|accentHeight|accumulate|additive|alignmentBaseline|allowReorder|alphabetic|amplitude|arabicForm|ascent|attributeName|attributeType|autoReverse|azimuth|baseFrequency|baselineShift|baseProfile|bbox|begin|bias|by|calcMode|capHeight|clip|clipPathUnits|clipPath|clipRule|colorInterpolation|colorInterpolationFilters|colorProfile|colorRendering|contentScriptType|contentStyleType|cursor|cx|cy|d|decelerate|descent|diffuseConstant|direction|display|divisor|dominantBaseline|dur|dx|dy|edgeMode|elevation|enableBackground|end|exponent|externalResourcesRequired|fill|fillOpacity|fillRule|filter|filterRes|filterUnits|floodColor|floodOpacity|focusable|fontFamily|fontSize|fontSizeAdjust|fontStretch|fontStyle|fontVariant|fontWeight|format|from|fr|fx|fy|g1|g2|glyphName|glyphOrientationHorizontal|glyphOrientationVertical|glyphRef|gradientTransform|gradientUnits|hanging|horizAdvX|horizOriginX|ideographic|imageRendering|in|in2|intercept|k|k1|k2|k3|k4|kernelMatrix|kernelUnitLength|kerning|keyPoints|keySplines|keyTimes|lengthAdjust|letterSpacing|lightingColor|limitingConeAngle|local|markerEnd|markerMid|markerStart|markerHeight|markerUnits|markerWidth|mask|maskContentUnits|maskUnits|mathematical|mode|numOctaves|offset|opacity|operator|order|orient|orientation|origin|overflow|overlinePosition|overlineThickness|panose1|paintOrder|pathLength|patternContentUnits|patternTransform|patternUnits|pointerEvents|points|pointsAtX|pointsAtY|pointsAtZ|preserveAlpha|preserveAspectRatio|primitiveUnits|r|radius|refX|refY|renderingIntent|repeatCount|repeatDur|requiredExtensions|requiredFeatures|restart|result|rotate|rx|ry|scale|seed|shapeRendering|slope|spacing|specularConstant|specularExponent|speed|spreadMethod|startOffset|stdDeviation|stemh|stemv|stitchTiles|stopColor|stopOpacity|strikethroughPosition|strikethroughThickness|string|stroke|strokeDasharray|strokeDashoffset|strokeLinecap|strokeLinejoin|strokeMiterlimit|strokeOpacity|strokeWidth|surfaceScale|systemLanguage|tableValues|targetX|targetY|textAnchor|textDecoration|textRendering|textLength|to|transform|u1|u2|underlinePosition|underlineThickness|unicode|unicodeBidi|unicodeRange|unitsPerEm|vAlphabetic|vHanging|vIdeographic|vMathematical|values|vectorEffect|version|vertAdvY|vertOriginX|vertOriginY|viewBox|viewTarget|visibility|widths|wordSpacing|writingMode|x|xHeight|x1|x2|xChannelSelector|xlinkActuate|xlinkArcrole|xlinkHref|xlinkRole|xlinkShow|xlinkTitle|xlinkType|xmlBase|xmlns|xmlnsXlink|xmlLang|xmlSpace|y|y1|y2|yChannelSelector|z|zoomAndPan|for|class|autofocus)|(([Dd][Aa][Tt][Aa]|[Aa][Rr][Ii][Aa]|x)-.*))$/;
@@ -13281,7 +13514,7 @@ function validateMonth(input) {
 	return CARD_EXPIRY_MONTH_RANGE.includes(input);
 }
 function validateCardIssuer(input) {
-	return input in CARD_ISSUER;
+	return Object.prototype.hasOwnProperty.call(CARD_ISSUER, input);
 }
 function createDigitFieldValidations(length) {
 	return [
@@ -13352,7 +13585,7 @@ var require_react_jsx_runtime_production = /* @__PURE__ */ __commonJSMin(((expor
 	exports.jsxs = jsxProd;
 }));
 //#endregion
-//#region src/components/CardPreview.tsx
+//#region src/components/CardForm/CardPreview.tsx
 var import_jsx_runtime = (/* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_jsx_runtime_production();
 })))();
@@ -13410,32 +13643,63 @@ function CardPreview(props) {
 	});
 }
 //#endregion
-//#region src/hooks/useSelectionRestore.ts
+//#region src/hooks/useInputGroup/useInputGroupElements.ts
+function useInputGroupElements(initialLength) {
+	const [refs, setRefs] = (0, import_react.useState)(() => Array.from({ length: initialLength }, () => (0, import_react.createRef)()));
+	const pendingFocusIndexRef = (0, import_react.useRef)(null);
+	const resizeRefs = (0, import_react.useCallback)((length) => {
+		setRefs((prev) => Array.from({ length }, (_, index) => prev[index] ?? (0, import_react.createRef)()));
+	}, []);
+	const focusAt = (0, import_react.useCallback)((index) => {
+		const ref = refs[index];
+		if (ref) {
+			ref.current?.focus();
+			return;
+		}
+		pendingFocusIndexRef.current = index;
+	}, [refs]);
+	(0, import_react.useLayoutEffect)(() => {
+		if (pendingFocusIndexRef.current === null) return;
+		refs[pendingFocusIndexRef.current]?.current?.focus();
+		pendingFocusIndexRef.current = null;
+	}, [refs]);
+	return {
+		refs,
+		resizeRefs,
+		focusAt
+	};
+}
+//#endregion
+//#region src/hooks/useInputGroup/utils.ts
+function findFailedValidation(validations, value, type) {
+	return validations.find((validation) => validation.type === type && !validation.validator(value));
+}
+function findChangeBlockingValidation(validations, nextValue, previousValue) {
+	return validations.find((validation) => nextValue.length && !previousValue?.startsWith(nextValue) && validation.type === "onChange" && !validation.validator(nextValue));
+}
+function getDisplayError(value, validationError, storedError) {
+	if (!value) return storedError;
+	return validationError ?? storedError;
+}
+function isValidValue(value, validations) {
+	return !!value && validations.every((rule) => rule.validator(value));
+}
 function getSelectionRange(target) {
 	return {
 		start: target.selectionStart ?? target.value.length,
 		end: target.selectionEnd ?? target.value.length
 	};
 }
-function useSelectionRestore(ref) {
-	const selectionRef = (0, import_react.useRef)(null);
-	(0, import_react.useLayoutEffect)(() => {
-		if (selectionRef.current === null) return;
-		const { start, end } = selectionRef.current;
-		selectionRef.current = null;
-		if (ref.current instanceof HTMLInputElement) ref.current.setSelectionRange(start, end);
-	});
-	return (0, import_react.useCallback)((target) => {
-		selectionRef.current = getSelectionRange(target);
-	}, []);
-}
-function useIndexedSelectionRestore(refs) {
+//#endregion
+//#region src/hooks/useInputGroup/useInputGroupSelection.ts
+function useInputGroupSelection(refs) {
 	const selectionRef = (0, import_react.useRef)(null);
 	(0, import_react.useLayoutEffect)(() => {
 		if (selectionRef.current === null) return;
 		const { index, start, end } = selectionRef.current;
 		selectionRef.current = null;
-		refs[index]?.current?.setSelectionRange(start, end);
+		const element = refs[index]?.current;
+		if (element instanceof HTMLInputElement) element.setSelectionRange(start, end);
 	});
 	return (0, import_react.useCallback)((index, target) => {
 		selectionRef.current = {
@@ -13445,42 +13709,64 @@ function useIndexedSelectionRestore(refs) {
 	}, []);
 }
 //#endregion
-//#region src/hooks/useArrayInput.ts
-function findFailedValidation$1(validations, value, type) {
-	return validations.find((validation) => validation.type === type && !validation.validator(value));
+//#region src/hooks/useInputGroup/useInputGroupState.ts
+function useStates(initialValue) {
+	const [states, setStates] = (0, import_react.useState)(initialValue);
+	return {
+		states,
+		setStates,
+		setStateAt: (0, import_react.useCallback)((index, error) => {
+			setStates((prev) => {
+				const newValue = [...prev];
+				newValue[index] = error;
+				return newValue;
+			});
+		}, [])
+	};
 }
-function findChangeBlockingValidation$1(validations, nextValue, previousValue) {
-	return validations.find((validation) => nextValue.length && !previousValue?.startsWith(nextValue) && validation.type === "onChange" && !validation.validator(nextValue));
+function useResizableStates(initialValue) {
+	const { states, setStates, setStateAt } = useStates(initialValue);
+	return {
+		states,
+		setStates,
+		setStateAt,
+		resizeStates: (0, import_react.useCallback)((length, defaultState) => {
+			setStates((prev) => Array.from({ length }).map((_, index) => index in prev ? prev[index] : typeof defaultState === "function" ? defaultState() : defaultState));
+		}, [setStates])
+	};
 }
-function getError$1(value, validations, storedError) {
-	if (!value) return storedError;
-	return findFailedValidation$1(validations, value, "onChange")?.message ?? storedError;
+//#endregion
+//#region src/hooks/useInputGroup/useInputGroupValidation.ts
+function useInputGroupValidation({ values, validations }) {
+	return {
+		validationErrors: (0, import_react.useMemo)(() => values.map((value, index) => {
+			if (!value) return null;
+			return findFailedValidation(validations[index] ?? [], value, "onChange")?.message ?? null;
+		}), [validations, values]),
+		isValid: (0, import_react.useMemo)(() => values.every((value, index) => isValidValue(value, validations[index] ?? [])), [validations, values])
+	};
 }
-function isValidValue$1(value, validations) {
-	return !!value && validations.every((rule) => rule.validator(value));
-}
-function replaceAt(values, index, value) {
-	const newArray = [...values];
-	newArray.splice(index, 1, value);
-	return newArray;
-}
-function resizeErrors(errors, length) {
-	return Array.from({ length }, (_, index) => errors[index] ?? null);
-}
-function useArrayInput(initialValue, options) {
-	const [values, setValues] = (0, import_react.useState)(initialValue);
-	const [storedErrors, setStoredErrors] = (0, import_react.useState)(() => initialValue.map(() => null));
-	const [refs] = (0, import_react.useState)(() => initialValue.map(() => (0, import_react.createRef)()));
-	const saveSelection = useIndexedSelectionRestore(refs);
-	const currentValidations = (0, import_react.useMemo)(() => options?.validation?.(values) ?? [], [options, values]);
-	const errors = (0, import_react.useMemo)(() => {
-		return values.map((value, index) => {
-			return getError$1(value, currentValidations[index] ?? [], storedErrors[index]);
-		});
-	}, [
-		currentValidations,
+//#endregion
+//#region src/hooks/useInputGroup/useInputGroup.ts
+function useInputGroup(initialValue, options) {
+	const validation = options?.validation;
+	const resolver = options?.resolver;
+	const { states: values, setStateAt: setValueAt, setStates: setValues } = useStates(initialValue);
+	const { states: storedErrors, setStateAt: setStoredErrorAt, resizeStates: resizeStoredErrors } = useResizableStates(() => initialValue.map(() => null));
+	const { states: isToucheds, setStateAt: setIsTouchedAt } = useResizableStates(() => initialValue.map(() => false));
+	const { refs, resizeRefs, focusAt } = useInputGroupElements(initialValue.length);
+	const saveSelection = useInputGroupSelection(refs);
+	const currentValidations = (0, import_react.useMemo)(() => validation?.(values) ?? [], [validation, values]);
+	const { validationErrors, isValid } = useInputGroupValidation({
 		values,
-		storedErrors
+		validations: currentValidations
+	});
+	const errors = (0, import_react.useMemo)(() => values.map((value, index) => {
+		return getDisplayError(value, validationErrors[index], storedErrors[index]);
+	}), [
+		storedErrors,
+		validationErrors,
+		values
 	]);
 	return {
 		values,
@@ -13488,122 +13774,74 @@ function useArrayInput(initialValue, options) {
 		error: (0, import_react.useMemo)(() => {
 			return errors.find((err) => err);
 		}, [errors]),
-		isValid: (0, import_react.useMemo)(() => values.every((value, index) => isValidValue$1(value, currentValidations[index] ?? [])), [currentValidations, values]),
-		refs,
+		isValid,
+		isToucheds,
+		isTouched: (0, import_react.useMemo)(() => isToucheds.some(Boolean), [isToucheds]),
 		register: (0, import_react.useCallback)(({ index }) => {
 			return {
 				ref: refs[index],
 				onChange: (e) => {
 					const fieldValidations = currentValidations[index] ?? [];
-					const failedValidation = findChangeBlockingValidation$1(fieldValidations, e.target.value, values[index]);
+					const failedValidation = findChangeBlockingValidation(fieldValidations, e.target.value, values[index]);
 					if (failedValidation) {
-						setStoredErrors((prev) => {
-							return replaceAt(prev, index, failedValidation.message);
-						});
+						setStoredErrorAt(index, failedValidation.message);
 						return;
 					}
-					const resolver = options?.resolver;
 					if (resolver) {
-						const resolvedValues = resolver(values.map((v, i) => i === index ? e.target.value : v));
+						const resolvedValues = resolver(values.map((value, valueIndex) => valueIndex === index ? e.target.value : value));
 						setValues(resolvedValues);
-						setStoredErrors((prev) => resizeErrors(prev, resolvedValues.length));
+						resizeStoredErrors(resolvedValues.length, null);
+						resizeRefs(resolvedValues.length);
 						if (fieldValidations.every((v) => v.validator(e.target.value))) {
-							const nextRef = refs[index + 1];
-							if (nextRef) {
-								nextRef.current?.focus();
+							const nextIndex = index + 1;
+							if (nextIndex < resolvedValues.length) {
+								focusAt(nextIndex);
 								return;
 							}
 						}
-						saveSelection(index, e.target);
+						if (e.target instanceof HTMLInputElement) saveSelection(index, e.target);
 						return;
 					}
-					setValues((prev) => {
-						return replaceAt(prev, index, e.target.value);
-					});
-					setStoredErrors((prev) => {
-						return replaceAt(prev, index, null);
-					});
-					if (fieldValidations.every((validation) => validation.validator(e.target.value))) {
-						const nextRef = refs[index + 1];
-						if (nextRef) nextRef.current?.focus();
-					}
+					setValueAt(index, e.target.value);
+					setStoredErrorAt(index, null);
+					if (fieldValidations.every((validation) => validation.validator(e.target.value))) focusAt(index + 1);
 				},
 				onBlur: (e) => {
-					const failedValidation = findFailedValidation$1(currentValidations[index] ?? [], e.target.value, "onBlur");
-					setStoredErrors((prev) => {
-						return replaceAt(prev, index, failedValidation ? failedValidation.message : null);
-					});
+					if (!isToucheds[index]) setIsTouchedAt(index, true);
+					const failedValidation = findFailedValidation(currentValidations[index] ?? [], e.target.value, "onBlur");
+					setStoredErrorAt(index, failedValidation ? failedValidation.message : null);
 				}
 			};
 		}, [
-			currentValidations,
 			refs,
+			currentValidations,
 			values,
-			options?.resolver,
-			saveSelection
+			resolver,
+			setValueAt,
+			setStoredErrorAt,
+			setValues,
+			resizeStoredErrors,
+			resizeRefs,
+			focusAt,
+			saveSelection,
+			isToucheds,
+			setIsTouchedAt
 		])
 	};
 }
 //#endregion
 //#region src/hooks/useInput.ts
-function findFailedValidation(validations, value, type) {
-	return validations.find((validation) => validation.type === type && !validation.validator(value));
-}
-function findChangeBlockingValidation(validations, nextValue, previousValue) {
-	return validations.find((validation) => nextValue.length && !previousValue?.startsWith(nextValue) && validation.type === "onChange" && !validation.validator(nextValue));
-}
-function getError(value, validations, storedError) {
-	if (!value) return storedError;
-	return findFailedValidation(validations, value, "onChange")?.message ?? storedError;
-}
-function isValidValue(value, validations) {
-	return !!value && validations.every((rule) => rule.validator(value));
-}
 function useInput(initialValue, options) {
-	const [value, setValue] = (0, import_react.useState)(initialValue);
-	const [storedError, setStoredError] = (0, import_react.useState)(null);
-	const ref = (0, import_react.useRef)(null);
-	const saveSelection = useSelectionRestore(ref);
-	const currentValidations = (0, import_react.useMemo)(() => options?.validation?.(value) ?? [], [options, value]);
+	const field = useInputGroup([initialValue], {
+		validation: (values) => [options?.validation?.(values[0]) ?? []],
+		resolver: options?.resolver ? (values) => [options.resolver(values[0])] : void 0
+	});
 	return {
-		value,
-		error: (0, import_react.useMemo)(() => getError(value, currentValidations, storedError), [
-			currentValidations,
-			value,
-			storedError
-		]),
-		isValid: isValidValue(value, currentValidations),
-		ref,
-		register: (0, import_react.useCallback)(() => {
-			return {
-				ref,
-				onChange: (e) => {
-					const failedValidation = findChangeBlockingValidation(currentValidations, e.target.value, value);
-					if (failedValidation) {
-						setStoredError(failedValidation.message);
-						return;
-					}
-					const resolver = options?.resolver;
-					if (resolver) {
-						setValue(resolver(e.target.value));
-						setStoredError(null);
-						if (e.target instanceof HTMLInputElement) saveSelection(e.target);
-						return;
-					}
-					setValue(e.target.value);
-					setStoredError(null);
-				},
-				onBlur: (e) => {
-					const failedValidation = findFailedValidation(currentValidations, e.target.value, "onBlur");
-					setStoredError(failedValidation ? failedValidation.message : null);
-				}
-			};
-		}, [
-			currentValidations,
-			value,
-			options?.resolver,
-			saveSelection
-		])
+		value: field.values[0],
+		error: field.errors[0],
+		isValid: field.isValid,
+		isTouched: field.isToucheds[0],
+		register: () => field.register({ index: 0 })
 	};
 }
 //#endregion
@@ -13616,8 +13854,7 @@ var CARD_FORM_STEP = {
 	CARD_NUMBER: 0
 };
 function useCardForm() {
-	const [step, setStep] = (0, import_react.useState)(0);
-	const cardNumberSegmentsField = useArrayInput([
+	const cardNumberSegmentsField = useInputGroup([
 		"",
 		"",
 		"",
@@ -13632,14 +13869,14 @@ function useCardForm() {
 			[...createDigitFieldValidations(cardNumberLength - 12)]
 		];
 	} });
-	const cardIssuerField = useInput(null, { validation: () => {
+	const cardIssuerField = useInput("", { validation: () => {
 		return [{
 			type: "onBlur",
 			validator: validateCardIssuer,
 			message: "카드사를 선택해주세요"
 		}];
 	} });
-	const cardExpiryDateField = useArrayInput(["", ""], { validation: () => {
+	const cardExpiryDateField = useInputGroup(["", ""], { validation: () => {
 		return [[...createDigitFieldValidations(2), {
 			type: "onBlur",
 			validator: validateMonth,
@@ -13671,20 +13908,23 @@ function useCardForm() {
 		cardPasswordField.isValid,
 		cardValidationCodeField.isValid
 	]);
-	(0, import_react.useEffect)(() => {
-		if (cardNumberSegmentsField.isValid) setStep((prev) => Math.max(CARD_FORM_STEP["CARD_ISSUER"], prev));
-		if (cardIssuerField.isValid) setStep((prev) => Math.max(CARD_FORM_STEP["CARD_EXPIRY_DATE"], prev));
-		if (cardExpiryDateField.isValid) setStep((prev) => Math.max(CARD_FORM_STEP["CARD_VALIDATION_CODE"], prev));
-		if (cardValidationCodeField.isValid) setStep((prev) => Math.max(CARD_FORM_STEP["CARD_PASSWORD"], prev));
-	}, [
-		cardExpiryDateField.isValid,
-		cardIssuerField.isValid,
-		cardNumberSegmentsField.isValid,
-		cardPasswordField.isValid,
-		cardValidationCodeField.isValid
-	]);
 	return {
-		step,
+		step: (0, import_react.useMemo)(() => {
+			if (cardValidationCodeField.isValid || cardPasswordField.isTouched) return CARD_FORM_STEP.CARD_PASSWORD;
+			if (cardExpiryDateField.isValid || cardValidationCodeField.isTouched) return CARD_FORM_STEP.CARD_VALIDATION_CODE;
+			if (cardIssuerField.isValid || cardExpiryDateField.isTouched) return CARD_FORM_STEP.CARD_EXPIRY_DATE;
+			if (cardNumberSegmentsField.isValid || cardIssuerField.isTouched) return CARD_FORM_STEP.CARD_ISSUER;
+			return CARD_FORM_STEP.CARD_NUMBER;
+		}, [
+			cardNumberSegmentsField.isValid,
+			cardIssuerField.isValid,
+			cardIssuerField.isTouched,
+			cardExpiryDateField.isValid,
+			cardExpiryDateField.isTouched,
+			cardValidationCodeField.isValid,
+			cardValidationCodeField.isTouched,
+			cardPasswordField.isTouched
+		]),
 		formValue,
 		formStatus,
 		cardNumberSegments: cardNumberSegmentsField,
@@ -13694,6 +13934,39 @@ function useCardForm() {
 		cardPassword: cardPasswordField
 	};
 }
+//#endregion
+//#region src/components/Common/Button.tsx
+var Button$1 = styled.button`
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-card-background);
+  color: var(--color-white);
+  font-size: 14px;
+  font-weight: 700;
+  height: 52px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+//#endregion
+//#region src/components/Common/Input.tsx
+var Input = styled.input`
+  width: 100%;
+  font-size: 14px;
+  border-radius: 3px;
+  padding: 8px;
+  border: 1px solid var(--color-border);
+
+  &:focus {
+    border-color: var(--color-black);
+    outline: 0;
+  }
+
+  &[data-is-error='true'] {
+    border-color: var(--color-error);
+  }
+`;
 //#endregion
 //#region src/components/Common/Text.tsx
 var FONT_SIZE = {
@@ -13713,55 +13986,168 @@ var FONT_COLOR = {
 	description: "var(--color-description, #8b95a1)",
 	error: "var(--color-error, #ff3d3d)"
 };
+var textStyles = (props) => css`
+  font-size: ${FONT_SIZE[props.size ?? "m"]};
+  font-weight: ${FONT_WEIGHT[props.weight ?? "medium"]};
+  color: ${FONT_COLOR[props.color ?? "black"]};
+`;
 var TextBase = styled.p`
   margin: 0;
-  font-size: ${(props) => `${FONT_SIZE[props.size ?? "m"]};`};
-  font-weight: ${(props) => `${FONT_WEIGHT[props.weight ?? "medium"]};`};
-  color: ${(props) => `${FONT_COLOR[props.color ?? "black"]};`};
+  ${textStyles}
 `;
 var Span = styled.span`
-  font-size: ${(props) => `${FONT_SIZE[props.size ?? "m"]};`};
-  font-weight: ${(props) => `${FONT_WEIGHT[props.weight ?? "medium"]};`};
-  color: ${(props) => `${FONT_COLOR[props.color ?? "black"]};`};
+  ${textStyles}
 `;
 var Label = styled.label`
-  font-size: ${(props) => `${FONT_SIZE[props.size ?? "m"]};`};
-  font-weight: ${(props) => `${FONT_WEIGHT[props.weight ?? "medium"]};`};
-  color: ${(props) => `${FONT_COLOR[props.color ?? "black"]};`};
+  ${textStyles}
 `;
 var Text = Object.assign(TextBase, {
 	Span,
 	Label
 });
 //#endregion
-//#region src/components/Common/Input.tsx
-var Input = styled.input`
-  width: 100%;
-  font-size: 13px;
-  border-radius: 2px;
-  padding: 8px 6px;
-  border: 1px solid var(--color-border);
-
-  &:focus {
-    border-color: var(--color-black);
-    outline: 0;
-  }
-
-  &[data-is-error='true'] {
-    border-color: var(--color-error);
-  }
-`;
+//#region src/components/CardForm/CardPasswordInput.tsx
+function CardPasswordInput({ field }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+		direction: "column",
+		gap: 10,
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.Label, {
+				htmlFor: "password",
+				children: "비밀번호 앞 2자리"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+				id: "password",
+				autoFocus: true,
+				inputMode: "numeric",
+				type: "password",
+				placeholder: "**",
+				"data-is-error": !!field.error,
+				value: field.value,
+				...field.register()
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+				size: "s",
+				color: "error",
+				role: "alert",
+				children: field.error
+			})
+		]
+	});
+}
+//#endregion
+//#region src/components/CardForm/CardCVCInput.tsx
+function CardCVCInput({ field }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+		direction: "column",
+		gap: 10,
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.Label, {
+				htmlFor: "cvc",
+				children: "CVC"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+				id: "cvc",
+				autoFocus: true,
+				inputMode: "numeric",
+				type: "password",
+				autoComplete: "cc-csc",
+				placeholder: "CVC",
+				"data-is-error": !!field.error,
+				value: field.value,
+				...field.register()
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+				size: "s",
+				color: "error",
+				role: "alert",
+				children: field.error
+			})
+		]
+	});
+}
+//#endregion
+//#region src/components/CardForm/CardExpiryDateInput.tsx
+function CardExpiryDateInput({ field }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+		direction: "column",
+		gap: 10,
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.Label, {
+				htmlFor: "expiry-date",
+				children: "유효기간"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+				gap: 8,
+				children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+					id: "expiry-date",
+					autoFocus: true,
+					inputMode: "numeric",
+					type: "text",
+					autoComplete: "cc-exp-month",
+					placeholder: "MM",
+					"data-is-error": !!field.errors[0],
+					value: field.values[0],
+					...field.register({ index: 0 })
+				}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+					type: "text",
+					inputMode: "numeric",
+					autoComplete: "cc-exp-year",
+					placeholder: "YY",
+					"data-is-error": !!field.errors[1],
+					value: field.values[1],
+					...field.register({ index: 1 })
+				})]
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+				size: "s",
+				color: "error",
+				role: "alert",
+				children: field.error
+			})
+		]
+	});
+}
 //#endregion
 //#region src/components/Common/Select.tsx
 var SelectBase = styled.select`
   width: 100%;
-  font-size: 13px;
-  border-radius: 2px;
-  padding: 8px 6px;
+  font-size: 14px;
+  border-radius: 3px;
+  padding: 8px;
   border: 1px solid var(--color-border);
   background: no-repeat calc(100% - 8px) 50% url(${"/react-payments/"}select_icon.svg);
   appearance: none;
-  color: ${(props) => props.value.length ? "var(--color-black)" : "var(--color-description)"};
+  color: ${(props) => props.value?.length ? "var(--color-black)" : "var(--color-description)"};
+
+  &,
+  &::picker(select) {
+    appearance: base-select;
+  }
+
+  &::picker-icon {
+    content: '';
+  }
+
+  &:open::picker(select) {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-color: var(--color-border);
+    margin: 5px 0;
+    padding: 4px 8px;
+    border-radius: 3px;
+  }
+
+  & option {
+    gap: 0;
+    padding: 0;
+    font-size: 14px;
+  }
+
+  & option::checkmark {
+    display: none;
+  }
 
   &:focus {
     border-color: var(--color-black);
@@ -13776,22 +14162,96 @@ var SelectBase = styled.select`
 var Option = styled.option``;
 var Select = Object.assign(SelectBase, { Option });
 //#endregion
-//#region src/components/Common/Button.tsx
-var Button$1 = styled.button`
-  border: 0;
-  border-radius: 8px;
-  background: var(--color-card-background);
-  color: var(--color-white);
-  font-size: 14px;
-  font-weight: 700;
-  height: 52px;
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
+//#region src/components/CardForm/CardIssuerSelect.tsx
+function CardIssuerSelect({ field }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+		direction: "column",
+		gap: 10,
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
+			autoFocus: true,
+			"data-is-error": !!field.error,
+			value: field.value ?? "",
+			...field.register(),
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Select.Option, {
+				value: "",
+				disabled: true,
+				hidden: true,
+				children: "카드사를 선택해 주세요"
+			}), Object.entries(CARD_ISSUER).map(([issuer, { label }]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Select.Option, {
+				value: issuer,
+				children: label
+			}, issuer))]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+			size: "s",
+			color: "error",
+			role: "alert",
+			children: field.error
+		})]
+	});
+}
 //#endregion
-//#region src/components/CardForm.tsx
+//#region src/components/CardForm/CardNumberSegmentsInput.tsx
+function CardNumberSegmentsInput({ field }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+		direction: "column",
+		gap: 10,
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.Label, {
+				htmlFor: "cardnumber",
+				children: "카드 번호"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
+				gap: 8,
+				children: field.values.map((segment, segmentIndex) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
+					id: segmentIndex === 0 ? "cardnumber" : void 0,
+					autoFocus: segmentIndex === 0,
+					type: "text",
+					inputMode: "numeric",
+					placeholder: "1234",
+					"data-is-error": !!field.errors[segmentIndex],
+					value: segment,
+					...field.register({ index: segmentIndex })
+				}, segmentIndex))
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+				size: "s",
+				color: "error",
+				role: "alert",
+				children: field.error
+			})
+		]
+	});
+}
+//#endregion
+//#region src/components/CardForm/CardFormSection.tsx
+function CardFormSectionBase({ isVisible = true, children }) {
+	if (!isVisible) return null;
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
+		direction: "column",
+		gap: 10,
+		children
+	});
+}
+function Title({ children }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+		size: "l",
+		weight: "bold",
+		children
+	});
+}
+function Description({ children }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+		size: "xs",
+		color: "description",
+		children
+	});
+}
+var CardFormSection = Object.assign(CardFormSectionBase, {
+	Title,
+	Description
+});
+//#endregion
+//#region src/components/CardForm/CardForm.tsx
 var Submit = styled(Button$1)`
   position: sticky;
   bottom: 0;
@@ -13814,188 +14274,40 @@ function CardForm(props) {
 			direction: "column",
 			gap: 10,
 			children: [
-				step >= CARD_FORM_STEP["CARD_PASSWORD"] && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-					direction: "column",
-					gap: 10,
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFormSection, {
+					isVisible: step >= CARD_FORM_STEP["CARD_PASSWORD"],
 					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-							direction: "column",
-							gap: 5,
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-								size: "l",
-								weight: "bold",
-								children: "비밀번호를 입력해 주세요"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-								size: "xs",
-								color: "description",
-								children: "앞의 2자리를 입력해주세요"
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.Label, { children: "비밀번호 앞 2자리" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-							autoFocus: true,
-							inputMode: "numeric",
-							type: "password",
-							placeholder: "**",
-							"data-is-error": !!form.cardPassword.error,
-							value: form.cardPassword.value,
-							...form.cardPassword.register()
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-							size: "s",
-							color: "error",
-							children: form.cardPassword.error
-						})
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Title, { children: "비밀번호를 입력해 주세요" }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Description, { children: "앞의 2자리를 입력해주세요" }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardPasswordInput, { field: form.cardPassword })
 					]
 				}),
-				step >= CARD_FORM_STEP["CARD_VALIDATION_CODE"] && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-					direction: "column",
-					gap: 10,
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFormSection, {
+					isVisible: step >= CARD_FORM_STEP["CARD_VALIDATION_CODE"],
+					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Title, { children: "CVC 번호를 입력해 주세요" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardCVCInput, { field: form.cardValidationCode })]
+				}),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFormSection, {
+					isVisible: step >= CARD_FORM_STEP["CARD_EXPIRY_DATE"],
 					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
-							direction: "column",
-							gap: 5,
-							children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-								size: "l",
-								weight: "bold",
-								children: "CVC 번호를 입력해 주세요"
-							})
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.Label, { children: "CVC" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-							autoFocus: true,
-							inputMode: "numeric",
-							type: "password",
-							placeholder: "CVC",
-							"data-is-error": !!form.cardValidationCode.error,
-							value: form.cardValidationCode.value,
-							...form.cardValidationCode.register()
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-							size: "s",
-							color: "error",
-							children: form.cardValidationCode.error
-						})
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Title, { children: "카드 유효기간을 입력해 주세요" }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Description, { children: "월/년도(MMYY)를 순서대로 입력해 주세요." }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardExpiryDateInput, { field: form.cardExpiryDate })
 					]
 				}),
-				step >= CARD_FORM_STEP["CARD_EXPIRY_DATE"] && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-					direction: "column",
-					gap: 10,
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFormSection, {
+					isVisible: step >= CARD_FORM_STEP["CARD_ISSUER"],
 					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-							direction: "column",
-							gap: 5,
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-								size: "l",
-								weight: "bold",
-								children: "카드 유효기간을 입력해 주세요"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-								size: "xs",
-								color: "description",
-								children: "월/년도(MMYY)를 순서대로 입력해 주세요."
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.Label, { children: "유효기간" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-							gap: 8,
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-								autoFocus: true,
-								inputMode: "numeric",
-								type: "text",
-								placeholder: "MM",
-								"data-is-error": !!form.cardExpiryDate.errors[0],
-								value: form.cardExpiryDate.values[0],
-								...form.cardExpiryDate.register({ index: 0 })
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-								type: "text",
-								inputMode: "numeric",
-								placeholder: "YY",
-								"data-is-error": !!form.cardExpiryDate.errors[1],
-								value: form.cardExpiryDate.values[1],
-								...form.cardExpiryDate.register({ index: 1 })
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-							size: "s",
-							color: "error",
-							children: form.cardExpiryDate.error
-						})
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Title, { children: "카드사를 선택해 주세요" }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Description, { children: "현재 국내 카드사만 가능합니다." }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardIssuerSelect, { field: form.cardIssuer })
 					]
 				}),
-				step >= CARD_FORM_STEP["CARD_ISSUER"] && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-					direction: "column",
-					gap: 10,
+				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFormSection, {
+					isVisible: step >= CARD_FORM_STEP["CARD_NUMBER"],
 					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-							direction: "column",
-							gap: 5,
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-								size: "l",
-								weight: "bold",
-								children: "카드사를 선택해 주세요"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-								size: "xs",
-								color: "description",
-								children: "현재 국내 카드사만 가능합니다."
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Select, {
-							autoFocus: true,
-							"data-is-error": !!form.cardIssuer.error,
-							value: form.cardIssuer.value ?? "",
-							...form.cardIssuer.register(),
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Select.Option, {
-								value: "",
-								disabled: true,
-								hidden: true,
-								children: "카드사를 선택해 주세요"
-							}), Object.entries(CARD_ISSUER).map(([issuer, { label }]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Select.Option, {
-								value: issuer,
-								children: label
-							}, issuer))]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-							size: "s",
-							color: "error",
-							children: form.cardIssuer.error
-						})
-					]
-				}),
-				step >= CARD_FORM_STEP["CARD_NUMBER"] && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-					direction: "column",
-					gap: 10,
-					children: [
-						/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
-							direction: "column",
-							gap: 5,
-							children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-								size: "l",
-								weight: "bold",
-								children: "결제할 카드 번호를 입력해 주세요"
-							}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-								size: "xs",
-								color: "description",
-								children: "본인 명의의 카드만 결제 가능합니다."
-							})]
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.Label, { children: "카드 번호" }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
-							gap: 8,
-							children: form.cardNumberSegments.values.map((segment, segmentIndex) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Input, {
-								autoFocus: segmentIndex === 0,
-								type: "text",
-								inputMode: "numeric",
-								placeholder: "1234",
-								"data-is-error": !!form.cardNumberSegments.errors[segmentIndex],
-								value: segment,
-								...form.cardNumberSegments.register({ index: segmentIndex })
-							}, segmentIndex))
-						}),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-							size: "s",
-							color: "error",
-							children: form.cardNumberSegments.error
-						})
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Title, { children: "결제할 카드 번호를 입력해 주세요" }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Description, { children: "본인 명의의 카드만 결제 가능합니다." }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardNumberSegmentsInput, { field: form.cardNumberSegments })
 					]
 				}),
 				form.formStatus.isValid && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Submit, {
@@ -14072,6 +14384,11 @@ function AddCardResultPage() {
 	if (!state) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Result, {
 		type: "error",
 		message: "카드 등록 결과가 없습니다.",
+		action: () => navigate("/")
+	}) });
+	if (state.type !== "success") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Result, {
+		type: "error",
+		message: "카드 등록에 실패했습니다.",
 		action: () => navigate("/")
 	}) });
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Result, {
