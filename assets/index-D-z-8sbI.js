@@ -1,3 +1,5 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/browser-C19kErli.js","assets/matchRequestUrl-CIdvF2RO.js","assets/handlers-D1pLBdUT.js","assets/utils-e-TxOHkI.js"])))=>i.map(i=>d[i]);
+import { a as validateMonth, l as CARD_NETWORK, n as getCardNetwork, r as validateCardIssuer, s as CARD_ISSUER, t as createDigitFieldValidations } from "./utils-e-TxOHkI.js";
 //#region \0rolldown/runtime.js
 var __create = Object.create;
 var __defProp = Object.defineProperty;
@@ -11572,7 +11574,7 @@ var NavLink = import_react.forwardRef(function NavLinkWithRef({ "aria-current": 
 	}, typeof children === "function" ? children(renderProps) : children);
 });
 NavLink.displayName = "NavLink";
-var Form = import_react.forwardRef(({ discover = "render", fetcherKey, navigate, reloadDocument, replace: replace2, state, method = defaultMethod, action, onSubmit, relative, preventScrollReset, viewTransition, defaultShouldRevalidate, ...props }, forwardedRef) => {
+var Form$1 = import_react.forwardRef(({ discover = "render", fetcherKey, navigate, reloadDocument, replace: replace2, state, method = defaultMethod, action, onSubmit, relative, preventScrollReset, viewTransition, defaultShouldRevalidate, ...props }, forwardedRef) => {
 	let { useTransitions } = import_react.useContext(NavigationContext);
 	let submit = useSubmit();
 	let formAction = useFormAction(action, { relative });
@@ -11607,7 +11609,7 @@ var Form = import_react.forwardRef(({ discover = "render", fetcherKey, navigate,
 		"data-discover": !isAbsolute && discover === "render" ? "true" : void 0
 	});
 });
-Form.displayName = "Form";
+Form$1.displayName = "Form";
 function ScrollRestoration({ getKey, storageKey, ...props }) {
 	let remixContext = import_react.useContext(FrameworkContext);
 	let { basename } = import_react.useContext(NavigationContext);
@@ -13407,140 +13409,6 @@ tags.forEach(function(tagName) {
 	styled[tagName] = styled(tagName);
 });
 //#endregion
-//#region src/constants.ts
-var CARD_EXPIRY_MONTH_RANGE = Array.from({ length: 12 }).map((_, index) => String(index + 1).padStart(2, "0"));
-var CARD_ISSUER = {
-	bc: { label: "BC카드" },
-	shinhan: { label: "신한카드" },
-	kakao: { label: "카카오뱅크" },
-	hyundai: { label: "현대카드" },
-	woori: { label: "우리카드" },
-	lotte: { label: "롯데카드" },
-	hana: { label: "하나카드" },
-	kookmin: { label: "국민카드" }
-};
-var CARD_NETWORK = {
-	"VISA": {
-		startPatterns: [{
-			regex: /^4/,
-			minMatchLength: 1
-		}],
-		cardValidationCodeLength: 3,
-		cardNumberFormat: [
-			4,
-			4,
-			4,
-			4
-		],
-		cardNumberLength: 16
-	},
-	"MasterCard": {
-		startPatterns: [{
-			regex: /^(51|52|53|54|55)/,
-			minMatchLength: 2
-		}],
-		cardValidationCodeLength: 3,
-		cardNumberFormat: [
-			4,
-			4,
-			4,
-			4
-		],
-		cardNumberLength: 16
-	},
-	"Diners": {
-		startPatterns: [{
-			regex: /^36/,
-			minMatchLength: 2
-		}],
-		cardValidationCodeLength: 3,
-		cardNumberFormat: [
-			4,
-			6,
-			4
-		],
-		cardNumberLength: 14
-	},
-	"AMEX": {
-		startPatterns: [{
-			regex: /^(34|37)/,
-			minMatchLength: 2
-		}],
-		cardValidationCodeLength: 4,
-		cardNumberFormat: [
-			4,
-			6,
-			5
-		],
-		cardNumberLength: 15
-	},
-	"UnionPay": {
-		startPatterns: [
-			{
-				regex: /^(62[4-6])/,
-				minMatchLength: 3
-			},
-			{
-				regex: /^(628[2-8])/,
-				minMatchLength: 4
-			},
-			{
-				regex: /^(62212[6-9]|6221[3-9]\d|622[2-8]\d{2}|6229[01]\d|62292[0-5])/,
-				minMatchLength: 6
-			}
-		],
-		cardValidationCodeLength: 3,
-		cardNumberFormat: [
-			4,
-			4,
-			4,
-			4
-		],
-		cardNumberLength: 16
-	}
-};
-//#endregion
-//#region src/utils.ts
-function validateDigits(input) {
-	return /^\d+$/.test(input);
-}
-function validateStringLength(input, length) {
-	return input.length === length;
-}
-function validateStringMaxLength(input, maxLength) {
-	return input.length <= maxLength;
-}
-function validateMonth(input) {
-	return CARD_EXPIRY_MONTH_RANGE.includes(input);
-}
-function validateCardIssuer(input) {
-	return Object.prototype.hasOwnProperty.call(CARD_ISSUER, input);
-}
-function createDigitFieldValidations(length) {
-	return [
-		{
-			type: "onChange",
-			validator: validateDigits,
-			message: "숫자만 입력 가능합니다."
-		},
-		{
-			type: "onChange",
-			validator: (input) => validateStringMaxLength(input, length),
-			message: `${length}자리까지 입력 가능합니다.`
-		},
-		{
-			type: "onBlur",
-			validator: (input) => validateStringLength(input, length),
-			message: `${length}자리를 입력해주세요.`
-		}
-	];
-}
-function getCardNetwork(cardNumberSegments) {
-	const cardNumber = cardNumberSegments.join("");
-	for (const [network, config] of Object.entries(CARD_NETWORK)) if (config.startPatterns.some(({ regex, minMatchLength }) => cardNumber.length >= minMatchLength && regex.test(cardNumber))) return network;
-	return null;
-}
-//#endregion
 //#region src/components/Common/Flex.tsx
 var Flex = styled.div`
   display: flex;
@@ -13585,7 +13453,7 @@ var require_react_jsx_runtime_production = /* @__PURE__ */ __commonJSMin(((expor
 	exports.jsxs = jsxProd;
 }));
 //#endregion
-//#region src/components/CardForm/CardPreview.tsx
+//#region src/components/AddCardForm/CardPreview.tsx
 var import_jsx_runtime = (/* @__PURE__ */ __commonJSMin(((exports, module) => {
 	module.exports = require_react_jsx_runtime_production();
 })))();
@@ -13936,14 +13804,34 @@ function useCardForm() {
 }
 //#endregion
 //#region src/components/Common/Button.tsx
-var Button$1 = styled.button`
+var variants = {
+	default: css`
+    border-radius: 8px;
+    background: var(--color-card-background);
+    color: var(--color-white);
+
+    &:disabled {
+      background: var(--color-gray-300);
+      color: var(--color-white);
+    }
+  `,
+	ghost: css`
+    background: transparent;
+    color: var(--color-gray-900);
+
+    &:disabled {
+      color: var(--color-gray-300);
+    }
+  `
+};
+var Button = styled.button`
   border: 0;
-  border-radius: 8px;
-  background: var(--color-card-background);
-  color: var(--color-white);
   font-size: 14px;
   font-weight: 700;
   height: 52px;
+  padding: 0 14px;
+
+  ${({ variant }) => variants[variant ?? "default"]}
 
   &:hover {
     cursor: pointer;
@@ -13957,6 +13845,13 @@ var Input = styled.input`
   border-radius: 3px;
   padding: 8px;
   border: 1px solid var(--color-border);
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-500);
+    border-color: var(--color-gray-300);
+  }
 
   &:focus {
     border-color: var(--color-black);
@@ -13974,7 +13869,8 @@ var FONT_SIZE = {
 	s: "12px",
 	m: "14px",
 	l: "18px",
-	xl: "24px"
+	xl: "20px",
+	"2xl": "24px"
 };
 var FONT_WEIGHT = {
 	medium: "500",
@@ -13990,9 +13886,28 @@ var textStyles = (props) => css`
   font-size: ${FONT_SIZE[props.size ?? "m"]};
   font-weight: ${FONT_WEIGHT[props.weight ?? "medium"]};
   color: ${FONT_COLOR[props.color ?? "black"]};
+  ${props.align ? `text-align: ${props.align};` : ""}
 `;
 var TextBase = styled.p`
   margin: 0;
+  ${textStyles}
+`;
+var H1 = styled.h1`
+  ${textStyles}
+`;
+var H2 = styled.h2`
+  ${textStyles}
+`;
+var H3 = styled.h3`
+  ${textStyles}
+`;
+var H4 = styled.h4`
+  ${textStyles}
+`;
+var H5 = styled.h5`
+  ${textStyles}
+`;
+var H6 = styled.h6`
   ${textStyles}
 `;
 var Span = styled.span`
@@ -14002,11 +13917,17 @@ var Label = styled.label`
   ${textStyles}
 `;
 var Text = Object.assign(TextBase, {
+	H1,
+	H2,
+	H3,
+	H4,
+	H5,
+	H6,
 	Span,
 	Label
 });
 //#endregion
-//#region src/components/CardForm/CardPasswordInput.tsx
+//#region src/components/AddCardForm/CardPasswordInput.tsx
 function CardPasswordInput({ field }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
 		direction: "column",
@@ -14026,7 +13947,7 @@ function CardPasswordInput({ field }) {
 				value: field.value,
 				...field.register()
 			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+			field.error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
 				size: "s",
 				color: "error",
 				role: "alert",
@@ -14036,7 +13957,7 @@ function CardPasswordInput({ field }) {
 	});
 }
 //#endregion
-//#region src/components/CardForm/CardCVCInput.tsx
+//#region src/components/AddCardForm/CardCVCInput.tsx
 function CardCVCInput({ field }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
 		direction: "column",
@@ -14057,7 +13978,7 @@ function CardCVCInput({ field }) {
 				value: field.value,
 				...field.register()
 			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+			field.error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
 				size: "s",
 				color: "error",
 				role: "alert",
@@ -14067,7 +13988,7 @@ function CardCVCInput({ field }) {
 	});
 }
 //#endregion
-//#region src/components/CardForm/CardExpiryDateInput.tsx
+//#region src/components/AddCardForm/CardExpiryDateInput.tsx
 function CardExpiryDateInput({ field }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
 		direction: "column",
@@ -14099,7 +14020,7 @@ function CardExpiryDateInput({ field }) {
 					...field.register({ index: 1 })
 				})]
 			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+			field.error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
 				size: "s",
 				color: "error",
 				role: "alert",
@@ -14119,6 +14040,13 @@ var SelectBase = styled.select`
   background: no-repeat calc(100% - 8px) 50% url(${"/react-payments/"}select_icon.svg);
   appearance: none;
   color: ${(props) => props.value?.length ? "var(--color-black)" : "var(--color-description)"};
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--color-gray-100);
+    color: var(--color-gray-500);
+    border-color: var(--color-gray-300);
+  }
 
   &,
   &::picker(select) {
@@ -14161,7 +14089,7 @@ var SelectBase = styled.select`
 var Option = styled.option``;
 var Select = Object.assign(SelectBase, { Option });
 //#endregion
-//#region src/components/CardForm/CardIssuerSelect.tsx
+//#region src/components/AddCardForm/CardIssuerSelect.tsx
 function CardIssuerSelect({ field }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
 		direction: "column",
@@ -14176,11 +14104,11 @@ function CardIssuerSelect({ field }) {
 				disabled: true,
 				hidden: true,
 				children: "카드사를 선택해 주세요"
-			}), Object.entries(CARD_ISSUER).map(([issuer, { label }]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Select.Option, {
-				value: issuer,
+			}), Object.entries(CARD_ISSUER).map(([, { issuerCode, label }]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Select.Option, {
+				value: issuerCode,
 				children: label
-			}, issuer))]
-		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+			}, issuerCode))]
+		}), field.error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
 			size: "s",
 			color: "error",
 			role: "alert",
@@ -14189,7 +14117,7 @@ function CardIssuerSelect({ field }) {
 	});
 }
 //#endregion
-//#region src/components/CardForm/CardNumberSegmentsInput.tsx
+//#region src/components/AddCardForm/CardNumberSegmentsInput.tsx
 function CardNumberSegmentsInput({ field }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
 		direction: "column",
@@ -14212,7 +14140,7 @@ function CardNumberSegmentsInput({ field }) {
 					...field.register({ index: segmentIndex })
 				}, segmentIndex))
 			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+			field.error && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
 				size: "s",
 				color: "error",
 				role: "alert",
@@ -14222,7 +14150,7 @@ function CardNumberSegmentsInput({ field }) {
 	});
 }
 //#endregion
-//#region src/components/CardForm/CardFormSection.tsx
+//#region src/components/AddCardForm/CardFormSection.tsx
 function CardFormSectionBase({ isVisible = true, children }) {
 	if (!isVisible) return null;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
@@ -14250,20 +14178,132 @@ var CardFormSection = Object.assign(CardFormSectionBase, {
 	Description
 });
 //#endregion
-//#region src/components/CardForm/CardForm.tsx
-var Submit = styled(Button$1)`
-  position: sticky;
-  bottom: 0;
-  border-radius: 0px;
-  margin: 0 -32px;
-`;
-function CardForm(props) {
-	const { step, ...form } = useCardForm();
-	const handleFormAction = () => {
-		props.onSubmit(form.formValue);
+//#region src/hooks/useMutation.ts
+var parseJsonResponse$1 = async (res) => {
+	if (res.status === 204) return null;
+	const text = await res.text();
+	return text.trim() ? JSON.parse(text) : null;
+};
+var createUrl$1 = (url, params) => {
+	if (!params) return url;
+	const queryString = new URLSearchParams(params).toString();
+	if (!queryString) return url;
+	return `${url}${url.includes("?") ? "&" : "?"}${queryString}`;
+};
+function useMutation(option) {
+	const [status, setStatus] = (0, import_react.useState)("idle");
+	const [data, setData] = (0, import_react.useState)(null);
+	const [error, setError] = (0, import_react.useState)(null);
+	const isMounted = (0, import_react.useRef)(true);
+	const { method, url, headers, onSuccess, onError } = option;
+	(0, import_react.useEffect)(() => {
+		isMounted.current = true;
+		return () => {
+			isMounted.current = false;
+		};
+	}, []);
+	const reset = (0, import_react.useCallback)(() => {
+		setStatus("idle");
+		setData(null);
+		setError(null);
+	}, []);
+	const mutateAsync = (0, import_react.useCallback)(async ({ body, query } = {}) => {
+		setStatus("loading");
+		setData(null);
+		setError(null);
+		try {
+			const res = await fetch(createUrl$1(url, query), {
+				method: method?.toUpperCase() ?? "POST",
+				headers,
+				body: body !== void 0 ? JSON.stringify(body) : void 0
+			});
+			const result = await parseJsonResponse$1(res);
+			if (isMounted.current) setData(result);
+			if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
+			if (isMounted.current) {
+				setStatus("success");
+				onSuccess?.(result);
+			}
+			return result;
+		} catch (reason) {
+			const err = reason instanceof Error ? reason : new Error(String(reason));
+			if (isMounted.current) {
+				setError(err);
+				setStatus("error");
+				onError?.(err);
+			}
+			throw err;
+		}
+	}, [
+		method,
+		url,
+		headers,
+		onSuccess,
+		onError
+	]);
+	return {
+		mutate: (0, import_react.useCallback)((option = {}) => {
+			mutateAsync(option).catch(() => {});
+		}, [mutateAsync]),
+		mutateAsync,
+		status,
+		data,
+		error,
+		reset
 	};
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("form", {
+}
+//#endregion
+//#region src/components/Common/View.tsx
+var View = styled.div`
+  width: 100%;
+  height: 100dvh;
+  max-width: 376px;
+  margin: 0 auto;
+  padding: 16px 32px 0 32px;
+`;
+//#endregion
+//#region src/components/Common/Fieldset.tsx
+var Fieldset = styled.fieldset`
+  border: 0;
+  margin: 0;
+  padding: 0;
+`;
+//#endregion
+//#region src/components/Common/Form.tsx
+function Form({ children, disabled, ...props }) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("form", {
+		...props,
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Fieldset, {
+			disabled,
+			children
+		})
+	});
+}
+//#endregion
+//#region src/components/AddCardForm/AddCardFormTemplate.tsx
+function isErrorResponse(data) {
+	return data && Object.prototype.hasOwnProperty.call(data, "code") ? true : false;
+}
+function AddCardFormTemplate() {
+	const navigate = useNavigate();
+	const { step, ...form } = useCardForm();
+	const mutation = useMutation({
+		method: "POST",
+		url: "/cards",
+		onSuccess: () => navigate("/cards")
+	});
+	const handleFormAction = async () => {
+		const requestBody = {
+			number: form.formValue.cardNumberSegments.join(""),
+			expirationDate: form.formValue.cardExpiryDate.join("/"),
+			cvc: form.formValue.cardValidationCode,
+			issuerCode: form.formValue.cardIssuer
+		};
+		mutation.mutate({ body: requestBody });
+	};
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Form, {
 		action: handleFormAction,
+		disabled: mutation.status === "loading",
 		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardPreview, {
 			issuer: form.formValue.cardIssuer,
 			network: getCardNetwork(form.formValue.cardNumberSegments),
@@ -14283,14 +14323,29 @@ function CardForm(props) {
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFormSection, {
 					isVisible: step >= CARD_FORM_STEP["CARD_VALIDATION_CODE"],
-					children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Title, { children: "CVC 번호를 입력해 주세요" }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardCVCInput, { field: form.cardValidationCode })]
+					children: [
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Title, { children: "CVC 번호를 입력해 주세요" }),
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardCVCInput, { field: form.cardValidationCode }),
+						isErrorResponse(mutation.data) && mutation.data.code === "INVALID_CVC" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+							size: "s",
+							color: "error",
+							role: "alert",
+							children: mutation.data.message
+						})
+					]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFormSection, {
 					isVisible: step >= CARD_FORM_STEP["CARD_EXPIRY_DATE"],
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Title, { children: "카드 유효기간을 입력해 주세요" }),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Description, { children: "월/년도(MMYY)를 순서대로 입력해 주세요." }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardExpiryDateInput, { field: form.cardExpiryDate })
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardExpiryDateInput, { field: form.cardExpiryDate }),
+						isErrorResponse(mutation.data) && mutation.data.code === "INVALID_EXPIRATION_DATE" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+							size: "s",
+							color: "error",
+							role: "alert",
+							children: mutation.data.message
+						})
 					]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFormSection, {
@@ -14298,7 +14353,13 @@ function CardForm(props) {
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Title, { children: "카드사를 선택해 주세요" }),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Description, { children: "현재 국내 카드사만 가능합니다." }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardIssuerSelect, { field: form.cardIssuer })
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardIssuerSelect, { field: form.cardIssuer }),
+						isErrorResponse(mutation.data) && mutation.data.code === "INVALID_ISSUER_CODE" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+							size: "s",
+							color: "error",
+							role: "alert",
+							children: mutation.data.message
+						})
 					]
 				}),
 				/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(CardFormSection, {
@@ -14306,106 +14367,444 @@ function CardForm(props) {
 					children: [
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Title, { children: "결제할 카드 번호를 입력해 주세요" }),
 						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardFormSection.Description, { children: "본인 명의의 카드만 결제 가능합니다." }),
-						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardNumberSegmentsInput, { field: form.cardNumberSegments })
+						/* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardNumberSegmentsInput, { field: form.cardNumberSegments }),
+						isErrorResponse(mutation.data) && mutation.data.code === "INVALID_CARD_NUMBER" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+							size: "s",
+							color: "error",
+							role: "alert",
+							children: mutation.data.message
+						})
 					]
 				}),
-				form.formStatus.isValid && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Submit, {
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
 					type: "submit",
+					style: {
+						position: "sticky",
+						bottom: "0",
+						borderRadius: "0px",
+						margin: "0 -32px"
+					},
+					disabled: mutation.status === "loading",
+					hidden: !form.formStatus.isValid,
 					children: "확인"
 				})
 			]
 		})]
-	});
+	}) });
 }
-//#endregion
-//#region src/components/Common/View.tsx
-var View = styled.div`
-  width: 100%;
-  height: 100dvh;
-  max-width: 376px;
-  margin: 0 auto;
-  padding: 16px 32px 0 32px;
-`;
 //#endregion
 //#region src/pages/AddCardPage.tsx
 function AddCardPage() {
-	const navigate = useNavigate();
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardForm, { onSubmit: (formData) => {
-		navigate("/add-card-result", { state: {
-			type: "success",
-			issuer: formData.cardIssuer,
-			firstSegment: formData.cardNumberSegments[0]
-		} });
-	} }) });
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AddCardFormTemplate, {});
 }
 //#endregion
-//#region src/components/Result.tsx
-var Container = styled(Flex)`
-  width: 100%;
-  height: 100%;
-`;
+//#region src/hooks/useQuery.ts
+var parseJsonResponse = async (res) => {
+	if (res.status === 204) return null;
+	const text = await res.text();
+	return text.trim() ? JSON.parse(text) : null;
+};
+var createUrl = (url, params) => {
+	if (!params) return url;
+	const queryString = new URLSearchParams(params).toString();
+	if (!queryString) return url;
+	return `${url}${url.includes("?") ? "&" : "?"}${queryString}`;
+};
+function useQuery(option) {
+	const [status, setStatus] = (0, import_react.useState)("idle");
+	const [data, setData] = (0, import_react.useState)(null);
+	const [error, setError] = (0, import_react.useState)(null);
+	const { method: rawMethod, url, params, headers, body, enabled } = option;
+	const requset = (0, import_react.useCallback)(() => {
+		const controller = new AbortController();
+		const method = rawMethod?.toUpperCase() ?? "GET";
+		const hasBody = method !== "GET" && body !== void 0;
+		Promise.resolve().then(() => {
+			if (controller.signal.aborted) throw new Error("Aborted");
+			setStatus("loading");
+			setData(null);
+			setError(null);
+			return fetch(createUrl(url, params), {
+				method,
+				headers,
+				body: hasBody ? JSON.stringify(body) : void 0,
+				signal: controller.signal
+			});
+		}).then(async (res) => {
+			const data = await parseJsonResponse(res);
+			if (controller.signal.aborted) return;
+			setData(data);
+			if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
+			setStatus("success");
+		}).catch((reason) => {
+			if (controller.signal.aborted) return;
+			setStatus("error");
+			setError(reason instanceof Error ? reason : new Error(String(reason)));
+		});
+		return () => {
+			controller.abort();
+		};
+	}, [
+		rawMethod,
+		url,
+		params,
+		headers,
+		body
+	]);
+	(0, import_react.useEffect)(() => {
+		if (enabled === false) return;
+		return requset();
+	}, [requset, enabled]);
+	return {
+		status,
+		data,
+		error,
+		refetch: (0, import_react.useCallback)(() => {
+			requset();
+		}, [requset])
+	};
+}
+//#endregion
+//#region src/components/Cards/CardsErrorTemplate.tsx
 var Image = styled.img`
-  width: 76px;
-  height: 76px;
+  width: 64px;
+  height: 64px;
 `;
-var Button = styled(Button$1)`
-  width: 100%;
-`;
-function Result(props) {
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Container, {
+function CardsErrorTemplate() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
 		direction: "column",
+		gap: 16,
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.H1, {
+			size: "l",
+			weight: "bold",
+			children: "보유 카드"
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
+			alignItems: "flex-end",
+			style: {
+				width: "100%",
+				height: "330px"
+			},
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+				direction: "column",
+				alignItems: "center",
+				gap: 8,
+				style: { width: "100%" },
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Image, {
+						alt: `error icon`,
+						src: `/react-payments/error.svg`
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+						size: "xl",
+						weight: "bold",
+						children: "카드 목록을 불러올 수 없어요"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+						size: "s",
+						color: "description",
+						children: "잠시 후 다시 시도해 주세요."
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+						to: "/",
+						style: { width: "100%" },
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							style: { width: "100%" },
+							children: "다시 시도"
+						})
+					})
+				]
+			})
+		})]
+	}) });
+}
+//#endregion
+//#region src/components/Cards/CardItem.tsx
+function CardItem(props) {
+	const navigate = useNavigate();
+	const issuer = (0, import_react.useMemo)(() => {
+		return Object.entries(CARD_ISSUER).find(([, info]) => info.issuerCode === props.card.issuerCode);
+	}, [props.card.issuerCode]);
+	const cardNumberSegments = (0, import_react.useMemo)(() => {
+		return props.card.number.split("").reduce((prev, cur) => {
+			const newArray = [...prev];
+			const lastIndex = newArray.length - 1;
+			if (newArray[lastIndex].length < 4) newArray[lastIndex] = newArray[lastIndex] + cur;
+			else newArray.push(cur);
+			return newArray;
+		}, [""]);
+	}, [props.card.number]);
+	const handleDelete = (0, import_react.useCallback)(() => {
+		const id = props.card.id;
+		if (!window.confirm(`${cardNumberSegments[0]}로 시작하는 카드를 삭제할게요`)) return;
+		fetch(`/cards/${id}`, { method: "delete" }).then((res) => {
+			if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
+			navigate(0);
+		}).catch(() => {
+			window.alert("카드를 삭제하지 못했어요");
+		});
+	}, [
+		cardNumberSegments,
+		navigate,
+		props.card.id
+	]);
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+		gap: 12,
 		alignItems: "center",
-		justifyContent: "center",
-		gap: 25,
+		style: {
+			border: "1px solid var(--color-gray-200)",
+			borderRadius: "3px",
+			padding: "14px"
+		},
+		"data-id": props.card.id,
 		children: [
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Image, {
-				alt: `${props.type} icon`,
-				src: `/react-payments/${props.type}.svg`
-			}),
-			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
-				size: "xl",
-				weight: "bold",
-				children: props.message
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, { style: {
+				width: "64px",
+				height: "40px",
+				borderRadius: "3px",
+				backgroundColor: `var(--color-card-${issuer?.[0]}, var(--color-gray-400))`
+			} }),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+				direction: "column",
+				flexGrow: 1,
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+						size: "l",
+						children: issuer?.[1].label ?? "알 수 없는 카드"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
+						gap: 4,
+						children: cardNumberSegments.map((segment, segmentIndex) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.Span, {
+							size: "s",
+							color: "description",
+							children: segment
+						}, segmentIndex))
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Text, {
+						size: "xs",
+						color: "description",
+						children: ["유효기간 ", props.card.expirationDate]
+					})
+				]
 			}),
 			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
-				onClick: props.action,
-				children: "확인"
+				variant: "ghost",
+				onClick: handleDelete,
+				children: "✕"
 			})
 		]
 	});
 }
 //#endregion
-//#region src/pages/AddCardResultPage.tsx
-function AddCardResultPage() {
-	const navigate = useNavigate();
-	const state = useLocation().state;
-	const cardIssuer = state?.issuer ? CARD_ISSUER[state.issuer] : void 0;
-	if (!state) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Result, {
-		type: "error",
-		message: "카드 등록 결과가 없습니다.",
-		action: () => navigate("/")
-	}) });
-	if (state.type !== "success") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Result, {
-		type: "error",
-		message: "카드 등록에 실패했습니다.",
-		action: () => navigate("/")
-	}) });
-	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Result, {
-		type: state.type,
-		message: `${state.firstSegment ?? "알 수 없는 카드번호"}로 시작하는 ${cardIssuer?.label ?? "카드"}가 등록되었어요.`,
-		action: () => navigate("/")
+//#region src/components/Cards/CardsTemplate.tsx
+function CardsTemplate(props) {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+		direction: "column",
+		gap: 16,
+		style: {
+			width: "100%",
+			height: "100%"
+		},
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Text.H1, {
+			size: "l",
+			weight: "bold",
+			children: [
+				"보유 카드 (",
+				props.data.length,
+				")"
+			]
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+			direction: "column",
+			gap: 16,
+			children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
+				direction: "column",
+				gap: 16,
+				children: props.data.map((card, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardItem, { card }, index))
+			}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+				to: "/",
+				style: { textDecoration: "none" },
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
+					alignItems: "center",
+					justifyContent: "center",
+					style: {
+						width: "100%",
+						height: "44px",
+						border: "1px dashed var(--color-gray-200)",
+						borderRadius: "3px"
+					},
+					children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+						color: "description",
+						children: "+ 카드 추가"
+					})
+				})
+			})]
+		})]
 	}) });
 }
 //#endregion
+//#region src/components/Cards/CardItemSkeleton.tsx
+function CardItemSkeleton() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+		gap: 12,
+		alignItems: "center",
+		style: {
+			border: "1px solid var(--color-gray-200)",
+			borderRadius: "3px",
+			padding: "14px"
+		},
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, { style: {
+			width: "64px",
+			height: "40px",
+			borderRadius: "3px",
+			backgroundColor: "var(--color-gray-200)"
+		} }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+			direction: "column",
+			gap: 6,
+			children: [
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, { style: {
+					width: "80px",
+					height: "14px",
+					borderRadius: "3px",
+					backgroundColor: "var(--color-gray-200)"
+				} }),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, { style: {
+					width: "140px",
+					height: "10px",
+					borderRadius: "3px",
+					backgroundColor: "var(--color-gray-200)"
+				} }),
+				/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, { style: {
+					width: "60px",
+					height: "10px",
+					borderRadius: "3px",
+					backgroundColor: "var(--color-gray-200)"
+				} })
+			]
+		})]
+	});
+}
+//#endregion
+//#region src/components/Common/VisuallyHidden.tsx
+var VisuallyHidden = styled.div`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+`;
+//#endregion
+//#region src/components/Cards/CardsSkeletonTemplate.tsx
+function CardsSkeletonTemplate() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(View, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(VisuallyHidden, { children: "카드 목록 로딩 중" }), /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+		direction: "column",
+		gap: 16,
+		children: [
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.H1, {
+				size: "l",
+				weight: "bold",
+				children: "보유 카드"
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
+				direction: "column",
+				gap: 16,
+				children: Array.from({ length: 3 }).map((_, index) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardItemSkeleton, {}, index))
+			}),
+			/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, { style: {
+				width: "100%",
+				height: "44px",
+				border: "1px dashed var(--color-gray-200)",
+				borderRadius: "3px",
+				backgroundColor: "var(--color-gray-100)"
+			} })
+		]
+	})] });
+}
+//#endregion
+//#region src/components/Cards/CardsEmptyTemplate.tsx
+function CardsEmptyTemplate() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(View, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+		direction: "column",
+		gap: 16,
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text.H1, {
+			size: "l",
+			weight: "bold",
+			children: "보유 카드"
+		}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, {
+			alignItems: "flex-end",
+			style: {
+				width: "100%",
+				height: "330px"
+			},
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Flex, {
+				direction: "column",
+				alignItems: "center",
+				gap: 8,
+				style: { width: "100%" },
+				children: [
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Flex, { style: {
+						width: "160px",
+						height: "100px",
+						border: "1px dashed var(--color-gray-200)",
+						backgroundColor: "var(--color-gray-100)"
+					} }),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+						size: "xl",
+						weight: "bold",
+						children: "등록된 카드가 없습니다"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Text, {
+						size: "s",
+						color: "description",
+						children: "아래 버튼을 눌러 첫 카드를 등록해보세요"
+					}),
+					/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Link, {
+						to: "/",
+						style: { width: "100%" },
+						children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Button, {
+							style: { width: "100%" },
+							children: "카드 추가하기"
+						})
+					})
+				]
+			})
+		})]
+	}) });
+}
+//#endregion
+//#region src/pages/CardsPage.tsx
+function CardsPage() {
+	const { status, data, error } = useQuery({ url: "/cards" });
+	if (status === "error" || error) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardsErrorTemplate, {});
+	if (status === "success" && data?.length) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardsTemplate, { data });
+	if (status === "success" && data?.length === 0) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardsEmptyTemplate, {});
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardsSkeletonTemplate, {});
+}
+//#endregion
 //#region src/main.tsx
+async function enableMocking() {
+	const { setupWorker } = await __vitePreload(async () => {
+		const { setupWorker } = await import("./browser-C19kErli.js");
+		return { setupWorker };
+	}, __vite__mapDeps([0,1]));
+	const { handlers } = await __vitePreload(async () => {
+		const { handlers } = await import("./handlers-D1pLBdUT.js");
+		return { handlers };
+	}, __vite__mapDeps([2,1,3]));
+	return setupWorker(...handlers).start({
+		onUnhandledRequest: "bypass",
+		serviceWorker: { url: `/react-payments/mockServiceWorker.js` }
+	});
+}
+await enableMocking();
 (0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
 	basename: "/react-payments/",
 	children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Routes, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
 		path: "/",
 		element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AddCardPage, {})
 	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-		path: "/add-card-result",
-		element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AddCardResultPage, {})
+		path: "/cards",
+		element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardsPage, {})
 	})] })
 }) }));
 //#endregion
