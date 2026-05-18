@@ -14289,7 +14289,7 @@ function AddCardFormTemplate() {
 	const { step, ...form } = useCardForm();
 	const mutation = useMutation({
 		method: "POST",
-		url: "/cards",
+		url: `/react-payments/cards`,
 		onSuccess: () => navigate("/cards")
 	});
 	const handleFormAction = async () => {
@@ -14536,7 +14536,7 @@ function CardItem(props) {
 	const handleDelete = (0, import_react.useCallback)(() => {
 		const id = props.card.id;
 		if (!window.confirm(`${cardNumberSegments[0]}로 시작하는 카드를 삭제할게요`)) return;
-		fetch(`/cards/${id}`, { method: "delete" }).then((res) => {
+		fetch(`/react-payments/cards/${id}`, { method: "delete" }).then((res) => {
 			if (!res.ok) throw new Error(`HTTP error: ${res.status}`);
 			navigate(0);
 		}).catch(() => {
@@ -14774,7 +14774,7 @@ function CardsEmptyTemplate() {
 //#endregion
 //#region src/pages/CardsPage.tsx
 function CardsPage() {
-	const { status, data, error } = useQuery({ url: "/cards" });
+	const { status, data, error } = useQuery({ url: `/react-payments/cards` });
 	if (status === "error" || error) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardsErrorTemplate, {});
 	if (status === "success" && data?.length) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardsTemplate, { data });
 	if (status === "success" && data?.length === 0) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardsEmptyTemplate, {});
