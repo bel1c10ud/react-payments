@@ -9983,24 +9983,30 @@ var PopStateEventType = "popstate";
 function isLocation(obj) {
 	return typeof obj === "object" && obj != null && "pathname" in obj && "search" in obj && "hash" in obj && "state" in obj && "key" in obj;
 }
-function createBrowserHistory(options = {}) {
-	function createBrowserLocation(window2, globalHistory) {
-		let maskedLocation = globalHistory.state?.masked;
-		let { pathname, search, hash } = maskedLocation || window2.location;
+function createHashHistory(options = {}) {
+	function createHashLocation(window2, globalHistory) {
+		let { pathname = "/", search = "", hash = "" } = parsePath(window2.location.hash.substring(1));
+		if (!pathname.startsWith("/") && !pathname.startsWith(".")) pathname = "/" + pathname;
 		return createLocation("", {
 			pathname,
 			search,
 			hash
-		}, globalHistory.state && globalHistory.state.usr || null, globalHistory.state && globalHistory.state.key || "default", maskedLocation ? {
-			pathname: window2.location.pathname,
-			search: window2.location.search,
-			hash: window2.location.hash
-		} : void 0);
+		}, globalHistory.state && globalHistory.state.usr || null, globalHistory.state && globalHistory.state.key || "default");
 	}
-	function createBrowserHref(window2, to) {
-		return typeof to === "string" ? to : createPath(to);
+	function createHashHref(window2, to) {
+		let base = window2.document.querySelector("base");
+		let href = "";
+		if (base && base.getAttribute("href")) {
+			let url = window2.location.href;
+			let hashIndex = url.indexOf("#");
+			href = hashIndex === -1 ? url : url.slice(0, hashIndex);
+		}
+		return href + "#" + (typeof to === "string" ? to : createPath(to));
 	}
-	return getUrlBasedHistory(createBrowserLocation, createBrowserHref, null, options);
+	function validateHashLocation(location, to) {
+		warning(location.pathname.charAt(0) === "/", `relative pathnames are not supported in hash history.push(${JSON.stringify(to)})`);
+	}
+	return getUrlBasedHistory(createHashLocation, createHashHref, validateHashLocation, options);
 }
 function invariant(value, message) {
 	if (value === false || value === null || typeof value === "undefined") throw new Error(message);
@@ -11442,9 +11448,9 @@ var isBrowser2 = typeof window !== "undefined" && typeof window.document !== "un
 try {
 	if (isBrowser2) window.__reactRouterVersion = "7.15.0";
 } catch (e) {}
-function BrowserRouter({ basename, children, useTransitions, window: window2 }) {
+function HashRouter({ basename, children, useTransitions, window: window2 }) {
 	let historyRef = import_react.useRef();
-	if (historyRef.current == null) historyRef.current = createBrowserHistory({
+	if (historyRef.current == null) historyRef.current = createHashHistory({
 		window: window2,
 		v5Compat: true
 	});
@@ -14797,14 +14803,12 @@ async function enableMocking() {
 	});
 }
 await enableMocking();
-(0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(BrowserRouter, {
-	basename: "/react-payments/",
-	children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Routes, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-		path: "/",
-		element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AddCardPage, {})
-	}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
-		path: "/cards",
-		element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardsPage, {})
-	})] })
-}) }));
+var routes = /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Routes, { children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+	path: "/",
+	element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(AddCardPage, {})
+}), /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Route, {
+	path: "/cards",
+	element: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(CardsPage, {})
+})] });
+(0, import_client.createRoot)(document.getElementById("root")).render(/* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(HashRouter, { children: routes }) }));
 //#endregion
