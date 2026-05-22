@@ -1,4 +1,4 @@
-import { a as validateMonth, c as CARD_ISSUER_CODES, i as validateDigits, l as CARD_NETWORK, n as getCardNetwork, o as validateStringLength } from "./utils-e-TxOHkI.js";
+import { a as validateMonth, c as CARD_ISSUER_CODES, i as validateDigits, n as getCardNetwork, o as validateStringLength, u as CARD_NETWORK } from "./utils-CD20oNb4.js";
 import { a as RequestHandler, c as statuses_default, g as devUtils, l as toPublicUrl, n as cleanUrl, o as HttpResponse, r as cookieStore, t as matchRequestUrl } from "./matchRequestUrl-CIdvF2RO.js";
 //#region node_modules/msw/lib/core/utils/logging/getTimestamp.mjs
 function getTimestamp(options) {
@@ -441,7 +441,7 @@ function validateCardIssuerCode(issuerCode) {
 	return CARD_ISSUER_CODES.some((cardIssuerCode) => cardIssuerCode === issuerCode);
 }
 function maskCardNumber(cardNumber) {
-	return `${cardNumber.slice(0, 6)}******${cardNumber.slice(-4)}`;
+	return cardNumber.slice(0, 6) + Array.from({ length: cardNumber.length - 6 - 4 }).map(() => "*").join("") + cardNumber.slice(-4);
 }
 //#endregion
 //#region src/mocks/handlers.ts

@@ -2,41 +2,51 @@
 var CARD_EXPIRY_MONTH_RANGE = Array.from({ length: 12 }).map((_, index) => String(index + 1).padStart(2, "0"));
 var CARD_ISSUER = {
 	bc: {
+		alias: "bc",
 		issuerCode: "31",
 		label: "BC카드"
 	},
 	shinhan: {
+		alias: "shinhan",
 		issuerCode: "41",
 		label: "신한카드"
 	},
 	kakao: {
+		alias: "kakao",
 		issuerCode: "15",
 		label: "카카오뱅크"
 	},
 	hyundai: {
+		alias: "hyundai",
 		issuerCode: "61",
 		label: "현대카드"
 	},
 	woori: {
+		alias: "woori",
 		issuerCode: "W1",
 		label: "우리카드"
 	},
 	lotte: {
+		alias: "lotte",
 		issuerCode: "71",
 		label: "롯데카드"
 	},
 	hana: {
+		alias: "hana",
 		issuerCode: "21",
 		label: "하나카드"
 	},
 	kookmin: {
+		alias: "kookmin",
 		issuerCode: "11",
 		label: "국민카드"
 	}
 };
 var CARD_ISSUER_CODES = Object.values(CARD_ISSUER).map(({ issuerCode }) => issuerCode);
+var CARD_ISSUER_CODE_ALIAS_MAPPER = Object.fromEntries(Object.values(CARD_ISSUER).map((info) => [info["issuerCode"], info["alias"]]));
 var CARD_NETWORK = {
 	"VISA": {
+		alias: "visa",
 		startPatterns: [{
 			regex: /^4/,
 			minMatchLength: 1
@@ -51,6 +61,7 @@ var CARD_NETWORK = {
 		cardNumberLength: 16
 	},
 	"MasterCard": {
+		alias: "mastercard",
 		startPatterns: [{
 			regex: /^(51|52|53|54|55)/,
 			minMatchLength: 2
@@ -65,6 +76,7 @@ var CARD_NETWORK = {
 		cardNumberLength: 16
 	},
 	"Diners": {
+		alias: "diners",
 		startPatterns: [{
 			regex: /^36/,
 			minMatchLength: 2
@@ -78,6 +90,7 @@ var CARD_NETWORK = {
 		cardNumberLength: 14
 	},
 	"AMEX": {
+		alias: "amex",
 		startPatterns: [{
 			regex: /^(34|37)/,
 			minMatchLength: 2
@@ -91,6 +104,7 @@ var CARD_NETWORK = {
 		cardNumberLength: 15
 	},
 	"UnionPay": {
+		alias: "unionpay",
 		startPatterns: [
 			{
 				regex: /^(62[4-6])/,
@@ -154,7 +168,6 @@ function createDigitFieldValidations(length) {
 function getCardNetwork(cardNumberSegments) {
 	const cardNumber = cardNumberSegments.join("");
 	for (const [network, config] of Object.entries(CARD_NETWORK)) if (config.startPatterns.some(({ regex, minMatchLength }) => cardNumber.length >= minMatchLength && regex.test(cardNumber))) return network;
-	return null;
 }
 //#endregion
-export { validateMonth as a, CARD_ISSUER_CODES as c, validateDigits as i, CARD_NETWORK as l, getCardNetwork as n, validateStringLength as o, validateCardIssuer as r, CARD_ISSUER as s, createDigitFieldValidations as t };
+export { validateMonth as a, CARD_ISSUER_CODES as c, validateDigits as i, CARD_ISSUER_CODE_ALIAS_MAPPER as l, getCardNetwork as n, validateStringLength as o, validateCardIssuer as r, CARD_ISSUER as s, createDigitFieldValidations as t, CARD_NETWORK as u };
